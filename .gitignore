@@ -6,6 +6,11 @@
 *.lo
 *.o
 *.obj
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
 
 # Precompiled Headers
 *.gch
