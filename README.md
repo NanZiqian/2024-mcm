@@ -15,16 +15,16 @@ Let's goooo
 7. Clearly <u>indicate the use of LLMs or other AI tools</u> in your report, including which model was used and for what purpose. Use inline citations and the reference section. ALSO append the Report on Use of AI after your 25-page solution. This new section will not be counted as part of the 25-page solution.
 
 Overall:
-• A Table of Contents assists the reader in previewing the organization of your report.
-• Present a clarification or restatement of the problem as appropriate.
-• Present a clear exposition of all variables and hypotheses.
-• State and justify reasonable assumptions that bear on the problem.
-• Present an analysis of the problem, motivating or justifying the model being used.
-• Summarize derivations, computations, or illustrative examples in the main body of the solution, and leave lengthy derivations and/or calculations and data in appropriate appendices.
-• Include a design of the model. Discuss how the model could be tested, to include error analysis, sensitivity, and/or stability.
-• Discuss any apparent strengths or weaknesses to your model or approach.
-• Provide a conclusion and report results explicitly.
-• Document resources and references.
-• <font color=Blue>Report on Use of AI</font>
+-  A Table of Contents assists the reader in previewing the organization of your report.
+-  Present a clarification or restatement of the problem as appropriate.
+-  Present a clear exposition of all variables and hypotheses.
+-  State and justify reasonable assumptions that bear on the problem.
+-  Present an analysis of the problem, motivating or justifying the model being used.
+-  Summarize derivations, computations, or illustrative examples in the main body of the solution, and leave lengthy derivations and/or calculations and data in appropriate appendices.
+-  Include a design of the model. Discuss how the model could be tested, to include error analysis, sensitivity, and/or stability.
+-  Discuss any apparent strengths or weaknesses to your model or approach.
+-  Provide a conclusion and report results explicitly.
+-  Document resources and references.
+-  <font color=Blue>Report on Use of AI</font>
 
 ![Alt text](<rules/report on use of ai.png>)
