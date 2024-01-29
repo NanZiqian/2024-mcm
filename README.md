@@ -28,3 +28,5 @@ Overall:
 -  <font color=Blue>Report on Use of AI</font>
 
 ![Alt text](<rules/report on use of ai.png>)
+
+![Alt text](rules/%E6%AF%94%E8%BE%83%E7%90%86%E6%83%B3%E7%9A%84%E6%97%B6%E9%97%B4%E5%AE%89%E6%8E%92.png)
