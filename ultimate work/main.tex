@@ -1,10 +1,11 @@
 \documentclass[12pt]{article}
-\usepackage{geometry}
-\geometry{left=1in,right=0.75in,top=1in,bottom=1in}
 
 %preamble%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\geometry{left=1in,right=0.75in,top=1in,bottom=1in}
 \usepackage{makeidx}
 \makeindex
+
 \bibliographystyle{plain}
 
 \usepackage{newtxtext}
@@ -14,6 +15,7 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
+\usepackage{appendix}
 
 \lhead{Team \Team}
 \rhead{}
@@ -26,6 +28,8 @@
 
 \newcommand{\Problem}{ABCDEF}
 \newcommand{\Team}{2400609}
+
+\renewcommand\appendixtocname{Appendix}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
@@ -51,11 +55,11 @@
 \input{mainmatter/Strength and weakness}
 
 %back matter%%%%%%%%%%%%%%%%%%%%%%%%%
-\appendix
-\include{backmatter/appendixA}
-
 \addcontentsline{toc}{section}{Refences}
 \bibliography{backmatter/papers}
+
+\appendix
+\include{backmatter/appendixA}
 
 \include{backmatter/useofAI}
 
