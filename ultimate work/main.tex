@@ -37,17 +37,23 @@
 \include{frontmatter/summary}
 %table of contents%%%%%%%%%%%%%%%%%%%
 \tableofcontents 
-%section1%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\include{mainmatter/section1}
-%appendix%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%main matter%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{mainmatter/Introduction}
+
+\include{mainmatter/Notations and Asssumptions}
+
+\include{mainmatter/Model}
+
+\include{mainmatter/Robustness Analysis}
+
+%back matter%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
 \include{backmatter/appendixA}
 
-%bibliography%%%%%%%%%%%%%%%%%%%%%%%%
-\include{backmatter/reference}
+\addcontentsline{toc}{section}{Refences}
+\bibliography{backmatter/papers}
 
-%report on use of AI%%%%%%%%%%%%%%%%%
 \include{backmatter/useofAI}
-
 
 \end{document}
