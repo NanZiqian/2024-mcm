@@ -2,7 +2,7 @@ variables,explanation,example
 match_id,match identification,"2023-wimbledon-1701 (""7"" is the round, and ""01"" the match number in that round)"
 player1,first and last name of the first player,Carlos Alcaraz
 player2,first and last name of the second player,Novak Djokovic
-elapsed_time,time elapsed since start of first point to start of current point (H:MM:SS),0:10:27
+elapsed_time,time elapsed since start of first point to start of current point (H:MM:SS),00:10:27
 set_no,set number in match,"1, 2, 3, 4, or 5"
 game_no,game number in set,"1, 2, ...,7"
 point_no,point number in game,"1, 2, 3... etc."
