@@ -15,16 +15,26 @@ p2_games = data(:,8);
 
 %% index of first game in sets
 set_index = find(point_no==1);% ith set begin at set_index[i]
-set_number = length(set_index);
+set_number = length(set_index);% number of set in data
 set_index = [set_index;length(point_no)+1];
 set_cap = zeros(set_number,1);% capacity of ith set, total 31 sets
 for i = 1:set_number
     set_cap(i) = set_index(i+1)-set_index(i);
 end
+%% find runs of success
+runs = 5;%number of runs considered as runs of success
+RoS_num = zeros(set_number,1);%number of 连续得分 in ith set
+RoS_time = zeros(set_number,floor(max(set_cap)/runs));
+for i = 1:set_number%runs of success in ith set
+    count = 1;
+    for j = set_index(i):set_index(i+1)-1
+
+
+
 %% output ith set image
 % output first 8 sets
 for i = 1:8
+    subplot(4,2,i);
     x = 1:set_cap(i);
-    plot(x,p1_p2points());
-    subplot(2,4,i);
+    plot(x,p1_p2points(set_index(i):set_index(i+1)-1));
 end
