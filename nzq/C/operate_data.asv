@@ -21,14 +21,37 @@ set_cap = zeros(set_number,1);% capacity of ith set, total 31 sets
 for i = 1:set_number
     set_cap(i) = set_index(i+1)-set_index(i);
 end
-%% find runs of success
-runs = 5;%number of runs considered as runs of success
-RoS_num = zeros(set_number,1);%number of 连续得分 in ith set
-RoS_time = zeros(set_number,floor(max(set_cap)/runs));
-for i = 1:set_number%runs of success in ith set
-    count = 1;
+%% find runs of success,RoS,连续得分
+runs = 5;%number of runs considered as RoS
+%for p1,p1连续得分分数=p2得分不变的次数
+p1_RoS_num = zeros(set_number,1);%number of RoS in ith set
+p1_RoS_time = zeros(set_number,floor(max(set_cap)/runs));%index of RoS in each set
+for i = 1:set_number
+    %RoS in ith set
+    RoS_count = 0;%number of RoS in a set
+    continual_count = 0;
+    value = -1;
     for j = set_index(i):set_index(i+1)-1
-
+        %judge p2_points_won(j)
+        if p2_points_won(j)~=value
+            %encounter new point
+            value = p2_points_won(j);
+            if continual_count>=5
+                % valid RoS
+                RoS_count = RoS_count + 1;
+                p1_RoS_time(i,RoS_count) = j;
+                continual_count = 0;
+                continue
+            else
+                % invalid RoS
+                continual_count = 1;
+                continue
+            end
+        else
+            %same point
+            continual_count = continual_count + 1;
+        end
+    end
 
 
 %% output ith set image
