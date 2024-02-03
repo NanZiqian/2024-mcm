@@ -1,0 +1,380 @@
+\documentclass[12pt, a4paper, oneside]{article}
+
+%% 包引用
+% 定理相关
+\usepackage{amsmath, amsthm, amssymb, bm, hyperref, mathrsfs, ctex}
+
+% 页面设置
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{subfigure}%并排子图 共享标题 有子标题
+\usepackage[ruled,linesnumbered]{algorithm2e}
+
+% 封面设置
+\usepackage{pdfpages}
+
+% 符号说明
+\usepackage{longtable}
+
+% 图表绘制
+\usepackage[all]{xy}
+
+% tikz绘图相关
+\usepackage{tikz}
+\usetikzlibrary{math}
+\usetikzlibrary{positioning}
+
+% 代码
+\usepackage{listings}
+
+\def\re{\mathrm{e}}
+\def\ri{\mathrm{i}}
+
+\def\Q{\mathbb Q}
+\def\M{\mathbb M}
+\def\R{\mathbb R}
+\def\S{\Bbb S}
+\def\N{\Bbb N}
+\def\Z{\Bbb Z}
+\def\C{\Bbb C}
+\def\E{\Bbb E}
+\def\P{\Bbb P}
+\def\H{\Bbb H}
+\def\BS{\Bbb S^2}
+\def\Limsup{\varlimsup}
+\def\Liminf{\varliminf}
+
+\def\BA{{\bf A}}
+\def\BB{{\bf B}}
+\def\BC{{\bf C}}
+\def\BD{{\bf D}}
+\def\BE{{\bf E}}
+\def\BF{{\bf F}}
+\def\BG{{\bf G}}
+\def\BH{{\bf H}}
+\def\BI{{\bf I}}
+\def\BJ{{\bf J}}
+\def\BK{{\bf K}}
+\def\BL{{\bf L}}
+\def\BM{{\bf M}}
+\def\BN{{\bf N}}
+\def\BO{{\bf O}}
+\def\BP{{\bf P}}
+\def\BQ{{\bf Q}}
+\def\BR{{\bf R}}
+\def\BS{{\bf S}}
+\def\BT{{\bf T}}
+\def\BU{{\bf U}}
+\def\BV{{\bf V}}
+\def\BW{{\bf W}}
+\def\BX{{\bf X}}
+\def\BY{{\bf Y}}
+\def\BZ{{\bf Z}}
+%
+\def\B0{{\bf 0}}  % 定义 \def\B1{{\bf 1}} 有问题
+\def\Ba{{\bf a}}
+\def\Bb{{\bf b}}
+\def\Bc{{\bf c}}
+\def\Bd{{\bf d}}
+\def\Be{{\bf e}}
+\def\Bf{{\bf f}}
+\def\Bg{{\bf g}}
+\def\Bh{{\bf h}}
+\def\Bi{{\bf i}}
+\def\Bj{{\bf j}}
+\def\Bk{{\bf k}}
+\def\Bl{{\bf l}}
+\def\Bm{{\bf m}}
+\def\Bn{{\bf n}}
+\def\Bo{{\bf o}}
+\def\Bp{{\bf p}}
+\def\Bq{{\bf q}}
+\def\Br{{\bf r}}
+\def\Bs{{\bf s}}
+\def\Bt{{\bf t}}
+\def\Bu{{\bf u}}
+\def\Bv{{\bf v}}
+\def\Bw{{\bf w}}
+\def\Bx{{\bf x}}
+\def\By{{\bf y}}
+\def\Bz{{\bf z}}
+
+\def\BGa{{\bm{\Ga}}}
+\def\BGb{{\bm{\Gb}}}
+\def\BGg{{\bm{\Gg}}}
+\def\BGl{{\bm{\Gl}}}
+\def\BGd{{\bm{\Gd}}}
+\def\Bxi{{\bm{\xi}}}
+\def\Beta{{\bm{\eta}}}
+\def\Bnu{{\bm{\nu}}}
+\def\Bmu{{\bm{\mu}}}
+\def\Beta{{\bm{\eta}}}
+\def\Btau{{\bm{\tau}}}
+\def\BGvp{{\bm{\Gvp}}}
+\def\BGs{{\bm{\Gs}}}
+\def\BGt{{\bm{\Gt}}}
+\def\Bpsi{{\bm{\psi}}}
+\def\Bell{{\bm{\ell}}}
+
+\def\BGP{{\mathbf{\GP}}}
+\def\BPsi{{\mathbf{\Psi}}}
+%
+%
+
+\def\bBA{{\ol{\bf A}}}
+\def\bBB{{\ol{\bf B}}}
+\def\bBC{{\ol{\bf C}}}
+\def\bBD{{\ol{\bf D}}}
+\def\bBE{{\ol{\bf E}}}
+\def\bBF{{\ol{\bf F}}}
+\def\bBG{{\ol{\bf G}}}
+\def\bBH{{\ol{\bf H}}}
+\def\bBI{{\ol{\bf I}}}
+\def\bBJ{{\ol{\bf J}}}
+\def\bBK{{\ol{\bf K}}}
+\def\bBL{{\ol{\bf L}}}
+\def\bBM{{\ol{\bf M}}}
+\def\bBN{{\ol{\bf N}}}
+\def\bBO{{\ol{\bf O}}}
+\def\bBP{{\ol{\bf P}}}
+\def\bBQ{{\ol{\bf Q}}}
+\def\bBR{{\ol{\bf R}}}
+\def\bBS{{\ol{\bf S}}}
+\def\bBT{{\ol{\bf T}}}
+\def\bBU{{\ol{\bf U}}}
+\def\bBV{{\ol{\bf V}}}
+\def\bBW{{\ol{\bf W}}}
+\def\bBX{{\ol{\bf X}}}
+\def\bBY{{\ol{\bf Y}}}
+\def\bBZ{{\ol{\bf Z}}}
+%
+\def\bBa{{\bar{\bf a}}}
+\def\bBb{{\bar{\bf b}}}
+\def\bBc{{\bar{\bf c}}}
+\def\bBd{{\bar{\bf d}}}
+\def\bBe{{\bar{\bf e}}}
+\def\bBf{{\bar{\bf f}}}
+\def\bBg{{\bar{\bf g}}}
+\def\bBh{{\bar{\bf h}}}
+\def\bBi{{\bar{\bf i}}}
+\def\bBj{{\bar{\bf j}}}
+\def\bBk{{\bar{\bf k}}}
+\def\bBl{{\bar{\bf l}}}
+\def\bBm{{\bar{\bf m}}}
+\def\bBn{{\bar{\bf n}}}
+\def\bBo{{\bar{\bf o}}}
+\def\bBp{{\bar{\bf p}}}
+\def\bBq{{\bar{\bf q}}}
+\def\bBr{{\bar{\bf r}}}
+\def\bBs{{\bar{\bf s}}}
+\def\bBt{{\bar{\bf t}}}
+\def\bBu{{\bar{\bf u}}}
+\def\bBv{{\bar{\bf v}}}
+\def\bBw{{\bar{\bf w}}}
+\def\bBx{{\bar{\bf x}}}
+\def\bBy{{\bar{\bf y}}}
+\def\bBz{{\bar{\bf z}}}
+
+\def\bBGa{{\bar{\bm{\Ga}}}}
+\def\bBGb{{\bar{\bm{\Gb}}}}
+\def\bBGg{{\bar{\bm{\Gg}}}}
+\def\bBGl{{\bar{\bm{\Gl}}}}
+\def\bBGd{{\bar{\bm{\Gd}}}}
+\def\bBxi{{\bar{\bm{\xi}}}}
+\def\bBeta{{\bar{\bm{\eta}}}}
+\def\bBnu{{\bar{\bm{\nu}}}}
+\def\bBmu{{\bar{\bm{\mu}}}}
+\def\bBeta{{\bar{\bm{\eta}}}}
+\def\bBtau{{\bar{\bm{\tau}}}}
+\def\bBGvp{{\bar{\bm{\Gvp}}}}
+\def\bBpsi{{\bar{\bm{\psi}}}}
+\def\bBell{{\bar{\bm{\ell}}}}
+
+\def\bBGP{{\ol{\mathbf{\GP}}}}
+\def\bBPsi{{\ol{\mathbf{\Psi}}}}
+
+\def\mb{\mbox}
+\def\nnb{\nonumber}
+\def\ds{\displaystyle}
+\def\cd{\cdot}
+\def\cds{\cdots}
+\def\all{  \, \forall \, }
+\def\ext{ \, \exists \, }
+\def\RT{\mathrm{T}}
+\def\arccot{{\rm arccot\,}}
+\def\wj{{\wedge}}
+
+\def\Llra{\Longleftrightarrow}
+\def\Lrla{\Longleftrightarrow}
+\def\llra{\longleftrightarrow}
+\def\lrla{\longleftrightarrow}
+\def\Lla{\Longleftarrow}
+\def\Lra{\Longrightarrow}
+\def\lra{\longrightarrow}
+\def\lla{\longleftarrow}
+\def\ra{\rightarrow}
+\def\la{\leftarrow}
+
+%%% 自定义命令
+%% Tikz符号
+% 交换图
+\newcommand{\dharrows}[4]{node[Hp={+}] {\tikz\draw[->] (#1)--(#2);}node[Hp={-}] {\tikz\draw[<-] (#1)--(#2);}node[midway,above]{\scriptsize{#3}} node[midway,below]{\scriptsize{#4}}}
+\newcommand{\dvarrows}[4]{node[Vp={+}] {\tikz\draw[<-] (#1)--(#2);}node[Vp={-}] {\tikz\draw[->] (#1)--(#2);}node[midway,left ]{\scriptsize{#3}} node[midway,right]{\scriptsize{#4}}}
+
+%% 数学符号
+% 微分
+\newcommand*{\dif}[1]{\mathrm{d}\mathbf{#1}}
+
+%% 图片相关
+\newcommand*{\fig}[3]{
+    \begin{figure}[H]
+        \centering
+        \includegraphics*[scale=#2]{#1}
+        \caption{#3}
+    \end{figure}
+}
+\newcommand*{\figsdb}[6]{
+\begin{figure}[H]
+    \centering
+    \setcounter{subfigure}{0}
+    \subfigure[#3]{
+        \includegraphics[scale=#2]{#1}
+    }
+    \subfigure[#6]{
+        \includegraphics[scale=#5]{#4}
+    }
+\end{figure}
+}
+\newcommand*{\figstri}[9]{
+\begin{figure}[H]
+    \centering
+    \setcounter{subfigure}{0}
+    \subfigure[#3]{
+        \includegraphics[scale=#2]{#1}
+    }
+    \subfigure[#6]{
+        \includegraphics[scale=#5]{#4}
+    }
+    \subfigure[#9]{
+        \includegraphics[scale=#8]{#7}
+    }
+\end{figure}
+}
+
+%% 定理
+
+% 定理样式配置  
+\newtheoremstyle{break}  
+    {\topsep} % Space above  
+    {\topsep} % Space below  
+    {\parshape 3 0pt \textwidth 3em \dimexpr\textwidth-3em 1em \dimexpr\textwidth-1em \normalfont} % Body font  
+    {} % Indent amount  
+    {\normalfont} % Theorem head font  
+    {:} % Punctuation after theorem head  
+    {\newline} % Space after theorem head  
+    {} % Theorem head spec (can be left empty, meaning `normal')  
+  
+% 定理环境定义  
+\newtheorem{remark}{Remark}  
+  
+\theoremstyle{break}  
+\newtheorem{conclusion}{结论}  
+\newtheorem{theorem}{定理}  
+\newtheorem{example}{例}  
+\newtheorem{lemma}{引理}  
+\newtheorem*{solving}{解}  
+
+%% Listings配置
+% Listings总显示风格
+\lstset{
+    basicstyle          =   \sffamily,          % 基本代码风格
+    keywordstyle        =   \bfseries,          % 关键字风格
+    commentstyle        =   \rmfamily\itshape,  % 注释的风格，斜体
+    stringstyle         =   \ttfamily,  % 字符串风格
+    flexiblecolumns,                % 别问为什么，加上这个
+    numbers             =   left,   % 行号的位置在左边
+    showspaces          =   false,  % 是否显示空格，显示了有点乱，所以不现实了
+    numberstyle         =   \zihao{-5}\ttfamily,    % 行号的样式，小五号，tt等宽字体
+    showstringspaces    =   false,
+    captionpos          =   t,      % 这段代码的名字所呈现的位置，t指的是top上面
+    frame               =   lrtb,   % 显示边框
+}
+
+% Listings语言显示风格
+\lstdefinestyle{Python}{
+    language        =   Python, % 语言选Python
+    basicstyle      =   \zihao{-5}\ttfamily,
+    numberstyle     =   \zihao{-5}\ttfamily,
+    keywordstyle    =   \color{blue},
+    keywordstyle    =   [2] \color{teal},
+    stringstyle     =   \color{magenta},
+    commentstyle    =   \color{red}\ttfamily,
+    breaklines      =   true,   % 自动换行，建议不要写太长的行
+    columns         =   fixed,  % 如果不加这一句，字间距就不固定，很丑，必须加
+    basewidth       =   0.5em,
+}
+
+
+% 文章界面设置
+
+\geometry{a4paper,scale=0.8}
+\date{\today}
+\linespread{1.5}
+
+\title{Chapter 5 Programming Assignments}
+\author{王迦楠\quad 数学科学学院\quad 求数2101\quad 3210105175}
+\date{\today}
+
+
+\begin{document}
+\maketitle
+
+\section{Problem 1}
+模型概述
+\begin{enumerate}
+    \item 列出所有可能的影响"momentum"的因素
+    \item 进行数据清洗和处理
+    \item 共线性分析，去除部分重复的因素
+    \item 使用层次分析法进行分析
+    \item 计算"momentum"
+\end{enumerate}
+\indent 为了探究"momentum"的原因，我们使用层次分析法进行定量的分析。
+具体地，"momentum"的大小定义为$$f_{ij}=\bf{\omega^{(k)}}\cdot\bf{X_{ij}^{(k)}}$$
+其中：
+\begin{enumerate}
+    \item $f_{ij}$代表第i场比赛（按照表格顺序）中第j个point number之前的"momentum"
+    \item $\bf{X_{ij}^{k}}$是一个k维的列向量，代表相对应时刻的一些影响因素，后面我们会具体给出
+    \item $\omega^{k}$是一个k维的行向量，指影响因素具体的权重，我们会通过层次分析法来得到
+    \item 这里的公式中，具体会分为两个不同的计算方法，一个分别代表自己发球的场次和对手发球的场次，
+    我们可以写为$$\bf{\omega^{(k)}}=\bf{\omega_0^{(k)}}.\ast {\delta^{(k)}}$$
+    代表两个相同维数向量对应位置相乘构成的向量，其中$\delta^{(k)}$为一个0,1向量，
+    取决于是否是自己的发球轮次，在具体的计算中，我们会分两种情况带入具体考虑。\\
+\end{enumerate}
+\subsection{影响因素分析}
+
+对于$\bf{X_{ij}^{k}}$的具体定义，我们认为，除了是否为发球方，还有许多其他因素
+会造成影响，包括选手的技术，疲惫程度，以及比赛的实时心态。
+基于以上三个大点，我们整理了九个因素来作为初步的影响因素，具体如下：
+（画个好看的表）
+
+\subsection{数据清洗和处理，以及数据集的标准化}
+
+\subsection{共线性检验}
+
+\subsection{层次分析法}
+我们为两种不同的发球类型（自己发球、对方发球）建立了两个矩阵;
+每个元素都显示了因子i和因子j之间的偏好程度。\\
+\indent 我们通过计算最大特征值并对其对应的特征向量进行归一化来获得每个部分的权重。
+我们使用组成比(CR)来检验每个矩阵的一致性，给定的数据为:…%𝑅=𝐼𝑅𝐼，
+其中，%𝐼= λ𝑚𝑎≥𝑛𝑛≥1，𝑅𝐼= 0.90(𝑛= 4)。
+三个矩阵的组成比分别为0.0612、0.0223和0.0301。
+因为它们都小于0.1，所以证实了矩阵的一致性。(需要看看)\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.85]{imgs/1.png}
+\end{figure}
+做一个这样的图，参考23b题2300136
+
+\end{document}
