@@ -12,26 +12,63 @@ p2_score = data(:,5);
 game_victor = data(:,6);
 p1_games = data(:,7);
 p2_games = data(:,8);
+server = data(:,9);
 
-%% index of first game in sets
-set_index = find(point_no==1);% ith set begin at set_index[i]
-set_number = length(set_index);% number of set in data
-set_index = [set_index;length(point_no)+1];
-set_cap = zeros(set_number,1);% capacity of ith set, total 31 sets
-for i = 1:set_number
-    set_cap(i) = set_index(i+1)-set_index(i);
+match1_momentum = readmatrix("matches_momentum/output.csv");
+%match1_momentum = match1_momentum(:,2:end);
+momentum_index = find(match1_momentum(:,1)==1);
+% index of first match in match
+match_index = find(point_no==1);% ith match begin at match_index[i]
+%sum(momentum_index == match_index)
+match_number = length(match_index);% number of match in data
+match_index = [match_index;length(point_no)+1];
+match_cap = zeros(match_number,1);% capacity of ith match, total 31 matchs
+for i = 1:match_number
+    match_cap(i) = match_index(i+1)-match_index(i);
 end
+%% Calculte points difference in 5 points at each time
+%p1_p2_5points
+
+%R = zeros(10,1);
+%for runs = 1:10
+runs = 1;
+p1_p2_5points = zeros(match_number,floor(max(match_cap)-runs+1));
+for i = 1:match_number
+    p1_p2_5points(i,1) = p1_p2points(match_index(i)+runs-1);
+    for j = 2:match_cap(i)-runs+1
+        p1_p2_5points(i,j) = p1_p2points(match_index(i)+j+runs-2)-p1_p2points(match_index(i)+j-2);
+    end
+end
+%corrcoef between momentum and point gain of match 1
+i=1;
+R_1 = corrcoef( p1_p2_5points(1:match_cap(i)-runs+1) , match1_momentum(1:match_cap(i)-runs+1,1)-match1_momentum(1:match_cap(i)-runs+1,2));
+R = R_1(1,2)
+% R_2 = corrcoef( -p1_p2_5points(1:match_cap(i)-runs+1) , match1_momentum(1:match_cap(i)-runs+1,2));
+% R_2 = R_2(1,2)
+% numerator = sum(p1_p2_5points(i,match_cap(i)-runs+1)>0 & ...
+%     match1_momentum(1:match_cap(i)-runs+1,1) - match1_momentum(1:match_cap(i)-runs+1,2)>0.5)
+% + sum(p1_p2_5points(i,match_cap(i)-runs+1)<0 & ...
+%     match1_momentum(1:match_cap(i)-runs+1,1) - match1_momentum(1:match_cap(i)-runs+1,2)<-0.5);
+% numerator/(match_cap(i)-runs+1-sum(abs(match1_momentum(1:match_cap(i)-runs+1,1) - match1_momentum(1:match_cap(i)-runs+1,2))<0.5))
+% %plot p1_p2_5points
+% x = 1:match_cap(i)-runs+1;
+% plot(x,p1_p2_5points(i,1:match_cap(i)-runs+1));
+
 %% find runs of success,RoS,连续得分
+%p1_RoS_num
+%p1_RoS_time
+%p2_RoS_num
+%p2_RoS_time
 runs = 5;%number of runs considered as RoS
 %for p1,p1连续得分分数=p2得分不变的次数
-p1_RoS_num = zeros(set_number,1);%number of RoS in ith set
-p1_RoS_time = zeros(set_number,floor(max(set_cap)/runs));%index of RoS in each set
-for i = 1:set_number
-    %RoS in ith set
-    RoS_count = 0;%number of RoS in a set
+p1_RoS_num = zeros(match_number,1);%number of RoS in ith match
+p1_RoS_time = zeros(match_number,floor(max(match_cap)/runs));%index of RoS in each match
+for i = 1:match_number
+    %RoS in ith match
+    RoS_count = 0;%number of RoS in a match
     continual_count = 0;
     value = -1;
-    for j = set_index(i):set_index(i+1)-1
+    for j = match_index(i):match_index(i+1)-1
         %judge p2_points_won(j)
         if p2_points_won(j)~=value
             %encounter new point
@@ -54,9 +91,9 @@ for i = 1:set_number
     end
     p1_RoS_num(i) = RoS_count;
 end
-% %print first 5runs in each set
-% for i = 1:set_number
-%     fprintf('set No.%d: ',i);
+% %print first 5runs in each match
+% for i = 1:match_number
+%     fprintf('match No.%d: ',i);
 %     for j = 1:5
 %         fprintf('%d ',p1_points_won(p1_RoS_time(i,1)+j-1));
 %     end
@@ -64,14 +101,14 @@ end
 % end
 
 %for p2,p2连续得分分数=p1得分不变的次数
-p2_RoS_num = zeros(set_number,1);%number of RoS in ith set
-p2_RoS_time = zeros(set_number,floor(max(set_cap)/runs));%index of RoS in each set
-for i = 1:set_number
-    %RoS in ith set
-    RoS_count = 0;%number of RoS in a set
+p2_RoS_num = zeros(match_number,1);%number of RoS in ith match
+p2_RoS_time = zeros(match_number,floor(max(match_cap)/runs));%index of RoS in each match
+for i = 1:match_number
+    %RoS in ith match
+    RoS_count = 0;%number of RoS in a match
     continual_count = 0;
     value = -1;
-    for j = set_index(i):set_index(i+1)-1
+    for j = match_index(i):match_index(i+1)-1
         %judge p2_points_won(j)
         if p1_points_won(j)~=value
             %encounter new point
@@ -93,20 +130,21 @@ for i = 1:set_number
         end
     end
     p2_RoS_num(i) = RoS_count;
+
 end
-% %print first 5runs in each set
-% for i = 1:set_number
-%     fprintf('set No.%d: ',i);
+% %print first 5runs in each match
+% for i = 1:match_number
+%     fprintf('match No.%d: ',i);
 %     for j = 1:5
 %         fprintf('%d ',p2_points_won(p2_RoS_time(i,1)+j-1));
 %     end
 %     fprintf('\n');
 % end
 
-%% output ith set image
-% output first 8 sets
+%% output ith match image
+% output first 8 matchs
 for i = 1:8
     subplot(4,2,i);
-    x = 1:set_cap(i);
-    plot(x,p1_p2points(set_index(i):set_index(i+1)-1));
+    x = 1:match_cap(i);
+    plot(x,p1_p2points(match_index(i):match_index(i+1)-1));
 end
