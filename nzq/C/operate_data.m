@@ -7,12 +7,12 @@ point_no = data(:,1);
 p1_points_won = data(:,2);
 p2_points_won = data(:,3);
 p1_p2points = p1_points_won - p2_points_won;
-p1_score = data(:,4);
-p2_score = data(:,5);
-game_victor = data(:,6);
-p1_games = data(:,7);
-p2_games = data(:,8);
-server = data(:,9);
+% p1_score = data(:,4);
+% p2_score = data(:,5);
+% game_victor = data(:,6);
+% p1_games = data(:,7);
+% p2_games = data(:,8);
+% server = data(:,9);
 
 matches_momentum = readmatrix("matches_momentum/output.csv");
 matches_momentum = matches_momentum(:,2:end);
@@ -26,29 +26,41 @@ for i = 1:match_number
 end
 %% Calculte points difference in future multiple points at each time
 %p1_p2_5points
-runs = 1;%points difference in future 'runs' points
-p1_p2_5points = zeros(match_number,floor(max(match_cap)-runs+1));
-for i = 1:match_number
-    p1_p2_5points(i,1) = p1_p2points(match_index(i)+runs-1);
-    for j = 2:match_cap(i)-runs+1
-        p1_p2_5points(i,j) = p1_p2points(match_index(i)+j+runs-2)-p1_p2points(match_index(i)+j-2);
+R = zeros(5,match_number);
+for runs = 1:5%points difference in future 'runs' points
+    p1_p2_5points = zeros(match_number,floor(max(match_cap)-runs+1));
+    for i = 1:match_number
+        p1_p2_5points(i,1) = p1_p2points(match_index(i)+runs-1);
+        for j = 2:match_cap(i)-runs+1
+            p1_p2_5points(i,j) = p1_p2points(match_index(i)+j+runs-2)-p1_p2points(match_index(i)+j-2);
+        end
     end
+    %corrcoef between momentum and point gain of matches
+    for i=1:match_number;
+        R_1 = corrcoef( p1_p2_5points(i,1:match_cap(i)-runs+1) , ...
+            matches_momentum(match_index(i):match_index(i)+match_cap(i)-runs,1)-matches_momentum(match_index(i):match_index(i)+match_cap(i)-runs,2));
+        R(runs,i) = R_1(1,2);
+    end
+    %plot corrcoef of all matches
+    % runs = 1;
+    % figure()
+    % plot(1:match_number,R(runs,:));
+    % title(['future rounds in consideration: ',num2str(runs)]);
+    % xlabel('match number');
+    % ylabel('correlation coefficient');
 end
-%corrcoef between momentum and point gain of matches
-
-for i=1:match_number;
-    R_1 = corrcoef( p1_p2_5points(i,1:match_cap(i)-runs+1) , ...
-        matches_momentum(match_index(i):match_index(i)+match_cap(i)-runs,1)-matches_momentum(match_index(i):match_index(i)+match_cap(i)-runs,2));
-    R(i) = R_1(1,2);
-end
-plot(1:match_number,R);
-% numerator = sum(p1_p2_5points(i,match_cap(i)-runs+1)>0 & ...
-%     match1_momentum(1:match_cap(i)-runs+1,1) - match1_momentum(1:match_cap(i)-runs+1,2)>0.5)
-% + sum(p1_p2_5points(i,match_cap(i)-runs+1)<0 & ...
-%     match1_momentum(1:match_cap(i)-runs+1,1) - match1_momentum(1:match_cap(i)-runs+1,2)<-0.5);
-% numerator/(match_cap(i)-runs+1-sum(abs(match1_momentum(1:match_cap(i)-runs+1,1) - match1_momentum(1:match_cap(i)-runs+1,2))<0.5))
+max_R = max(R,[],2)';
+min_R = min(R,[],2)';
 %plot p1_p2_5points
-
+% for i = 1:3
+%     figure()
+%     plot(1:match_cap(i)-runs+1,p1_p2_5points(i,1:match_cap(i)-runs+1))
+%     %,'o', 'filled'
+%     hold on
+%     plot(1:match_cap(i)-runs+1,matches_momentum(match_index(i):match_index(i)+match_cap(i)-runs,1)- ...
+%         matches_momentum(match_index(i):match_index(i)+match_cap(i)-runs,2))
+%     legend('gain difference','momentum difference')
+% end
 
 %% find runs of success,RoS,连续得分
 %p1_RoS_num

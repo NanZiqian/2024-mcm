@@ -79,21 +79,99 @@ In order to quantify the factors used in our model, based on our assumptions, we
     \end{algorithmic}
 \end{algorithm}
 
-\subsection{Visualization and Analysis}
+\subsection{Visualization and Analysis}~{}
 
 In figure 1, when the red line is above the blue line, it means that the player is performing better than the opponent. 
 
 In figure 2, we minus the opponent's momentum from the player's momentum to get the difference. And the difference 
 indicates how much better the player is performing than the opponent.
 
-\subsection{momentum autocorrelation and correlation with runs of success}
+\subsection{momentum autocorrelation and correlation with runs of success}~{}
 
-to 
+To answer the coach's doubt,
+we need to perform autocorrelation test on momentum, 
+and perform correlation test between current momentum and future scores
+in this section.
+
+If the momentum has a high autocorrelation, it means that the momentum at this moment 
+has a high impact on future performance. And if the correlation between momentum and 
+future scores is high, it means that the player with higher momentum has a higher
+chance to win the next multiple round.
 
 \paragraph{momentum autocorrelation}
 
-\paragraph{correlation with runs of success}
+\paragraph{correlation with runs of success}~{}
 
-To give a quantitative evaluation of ``future scores'', we calculate points gain in future multiple points,
-and calculate difference between the two players, 
-this indicates how much better the player is performing than the opponent.
+To give a quantitative evaluation of ``future scores'', we count points gain in future multiple rounds,
+and derive the difference by minus that of the opponent. 
+For example, if the player gains 3 points in the next 5 rounds, and the opponent gains 2 points,
+the difference is 1.
+The difference indicates how much better the player is performing than the opponent.
+
+In intuition, the player with higher momentum should have a higher chance to win the next round.
+And momentum at this moment should have less impact on the future rounds as time extends.
+The correlation between momentum and future scores verifies our intuition.
+
+We calculate points gain difference in future one to five rounds at each time of all matches.
+Here we display five points gain difference and momentum difference in first three games.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.34\textwidth}
+        \includegraphics[width=\linewidth]{mainmatter/photos/diff_match1.png}
+        \caption{2023-wimbledon-1301}
+    \end{subfigure}\hspace{-0.02\textwidth}
+    \begin{subfigure}[b]{0.34\textwidth}
+        \includegraphics[width=\linewidth]{mainmatter/photos/diff_match2.png}
+        \caption{2023-wimbledon-1302}
+    \end{subfigure}\hspace{-0.02\textwidth}
+    \begin{subfigure}[b]{0.34\textwidth}
+        \includegraphics[width=\linewidth]{mainmatter/photos/diff_match3.png}
+        \caption{2023-wimbledon-1303}
+    \end{subfigure}
+    \caption{Gain Difference and Momentum in First Three Games}
+    \label{fig:Gain Difference and Momentum}
+\end{figure}
+
+And derive the correlation between gain difference from one to five rounds 
+and momentum difference of all matches. Here we display the three of them.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.34\textwidth}
+        \includegraphics[width=\linewidth]{mainmatter/photos/momen_1points_cor.png}
+        \caption{gain difference in 1 round}
+    \end{subfigure}\hspace{-0.02\textwidth}
+    \begin{subfigure}[b]{0.34\textwidth}
+        \includegraphics[width=\linewidth]{mainmatter/photos/momen_2points_cor.png}
+        \caption{gain difference in 2 rounds}
+    \end{subfigure}\hspace{-0.02\textwidth}
+    \begin{subfigure}[b]{0.34\textwidth}
+        \includegraphics[width=\linewidth]{mainmatter/photos/momen_3points_cor.png}
+        \caption{gain difference in 3 rounds}
+    \end{subfigure}
+    \caption{Correlation Between Gain Difference and Momentum Difference}
+    \label{fig:Correlation}
+\end{figure}
+
+Here we display the max and min correlation in different rounds.
+(hint. the max and min correlation means maximum of all matches.)
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|}
+    \hline
+        rounds & 1 & 2 & 3 & 4 & 5 \\ \hline
+        max & 0.7934 & 0.6307 & 0.5264 & 0.4678 & 0.3910 \\ \hline
+        min & 0.6914 & 0.4516 & 0.3074 & 0.1824 & 0.0627 \\ \hline
+    \end{tabular}
+    \caption{max and min Correlation of all matches in different rounds}
+    \label{fig:maxmin Correlation}
+\end{table}
+
+As we can see from the table, the correlation between momentum and future scores is bigger
+than 0.5 considering the next 1 round, it implies that momentum has a substantial impact on the future scores.
+And the correlation decreases as the rounds extend, which verifies our intuition, that
+the momentum at this moment has less impact on the future rounds as time extends.
+
+Now, we have finished problem 2.
