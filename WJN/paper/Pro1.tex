@@ -24,6 +24,7 @@
 \usepackage{tikz}
 \usetikzlibrary{math}
 \usetikzlibrary{positioning}
+\usetikzlibrary{trees}
 
 % 代码
 \usepackage{listings}
@@ -330,56 +331,133 @@
 \begin{document}
 \maketitle
 
-\section{Problem 1}
-模型概述
+\section{Model Review}
+
+In this section, we will primarily focus on establishing a model using the Analytic Hierarchy Process (AHP) to address problems 1 and 2. We will break down the problems into five parts:
 \begin{enumerate}
-    \item 列出所有可能的影响"momentum"的因素
-    \item 进行数据清洗和处理
-    \item 共线性分析，去除部分重复的因素
-    \item 使用层次分析法进行分析
-    \item 计算"momentum"
+\item Problem Analysis
+\item Data Cleaning and Processing
+\item Collinearity Detection
+\item Analytic Hierarchy Process (AHP)
 \end{enumerate}
-\indent 为了探究"momentum"的原因，我们使用层次分析法进行定量的分析。
-具体地，"momentum"的大小定义为$$f_{ij}=\bf{\omega}\cdot\bf{X_{ijk}}$$
-其中：
+
+\subsection{Problem Analysis}
+
+% \indent 为了探究"momentum"的原因，我们首先需要对"momentum"有一个初步的定义，"momentum"的大小定义为$$f_{ijk}=\bf{\omega}\cdot\bf{x_{ijk}}$$
+% 其中：
+% \begin{enumerate}
+%     \item $f_{ijk}$代表第i场比赛（按照表格顺序）中第j个point number之前，第k个选手的"momentum"
+%     \item $\bf{x_{ijk}}$是一个n维的列向量，代表相对应时刻的一些影响因素，后面我们会具体给出
+%     \item $\bf\omega$是一个n维的行向量，指影响因素具体的权重，我们会通过层次分析法来得到
+%     \item 这里的公式中，具体会分为两个不同的计算方法，一个分别代表自己发球的场次和对手发球的场次，
+%     我们可以写为$$\bf{\omega}=\bf{\omega_0}.\ast {\delta}=(\omega_0^{(0)}
+%     \delta^{(0)},\omega_0^{(1)}\delta^{(1)},\dots,\omega_0^{(n)}\delta^{(n)})$$
+%     代表两个相同维数向量对应位置相乘构成的向量，其中$\delta$为一个0,1向量，
+%     取决于是否是自己的发球轮次，在具体的计算中，我们会分两种情况带入具体考虑。\\
+% \end{enumerate}
+
+\indent To investigate the reasons behind "momentum," we first need to provide a preliminary definition for "momentum." The magnitude of "momentum" is defined as $$f_{ijk}=\boldsymbol{\omega}\cdot\boldsymbol{x_{ijk}}$$
+where:
 \begin{enumerate}
-    \item $f_{ijk}$代表第i场比赛（按照表格顺序）中第j个point number之前的"momentum"
-    \item $\bf{X_{ij}}$是一个n维的列向量，代表相对应时刻的一些影响因素，后面我们会具体给出
-    \item $\omega^{n}$是一个n维的行向量，指影响因素具体的权重，我们会通过层次分析法来得到
-    \item 这里的公式中，具体会分为两个不同的计算方法，一个分别代表自己发球的场次和对手发球的场次，
-    我们可以写为$$\bf{\omega}=\bf{\omega_0}.\ast {\delta}=(\omega^{(0)}
-    \delta^{(0)},\omega^{(1)}\delta^{(1)},\dots,\omega^{(n)}\delta^{(n)})$$
-    代表两个相同维数向量对应位置相乘构成的向量，其中$\delta$为一个0,1向量，
-    取决于是否是自己的发球轮次，在具体的计算中，我们会分两种情况带入具体考虑。\\
+    \item $f_{ijk}$ represents the "momentum" of player $k$ before the $j$th point number in the $i$th match (in the order given by the table).
+    \item $\boldsymbol{x_{ijk}}$ is an $n$-dimensional column vector representing some influencing factors at the corresponding moment. Specific details will be provided later.
+    \item $\boldsymbol{\omega}$ is an $n$-dimensional row vector indicating the specific weights of the influencing factors, which will be obtained through the Analytic Hierarchy Process (AHP).
+    \item In this formula, there are two different calculation methods, one representing rounds where the player serves and the other representing rounds where the opponent serves. We can express it as $$\boldsymbol{\omega}=\boldsymbol{\omega_0} \circ \boldsymbol{\delta}=(\omega_0^{(0)}\delta^{(0)},\omega_0^{(1)}\delta^{(1)},\dots,\omega_0^{(n)}\delta^{(n)})$$ representing a vector formed by element-wise multiplication of two vectors of the same dimension. Here, $\boldsymbol{\delta}$ is a $0,1$ vector indicating whether it is the player's serving round. In the specific calculation, we will consider two cases separately.
 \end{enumerate}
-\subsection{影响因素分析}
 
-对于$\bf{X_{ij}^{n}}$的具体定义，我们认为，除了是否为发球方，还有许多其他因素
-会造成影响，包括选手的技术，疲惫程度，以及比赛的实时心态。
-基于以上三个大点，我们整理了12个因素来作为初步的影响因素，具体如下：
-（画个好看的表）
+% 对于$\bf{x_{ij}^{n}}$的具体定义，我们认为，除了文章中所提到的是否为发球方，还有许多其他因素
+% 会造成影响，包括选手的技术，疲惫程度，以及比赛的实时心态等（这里我们主要考虑以上三点）。
+% 基于以上三个大点，我们整理了12个因素来作为初步的影响因素，具体如下：
 
-\subsection{数据清洗和处理，以及数据集的标准化}
+For the specific definition of $\boldsymbol{x_{ij}^{n}}$, we believe that, in addition to whether the player is serving, many other factors can have an impact, including the player's skills, fatigue level, and real-time mental state of the game (here, we mainly consider these three points). Based on these three main aspects, we have organized 12 factors as preliminary influencing factors, as follows:
 
-\subsection{共线性检验}
-在对数据进行处理之后，考虑到同一类别的影响因素之间可能存在共线性，比如发球ace，
-一发得分率，前一分是否得分可能会相关，跑动距离，击拍数可能会相关，我们使用stata对数据进行
-共线性检测。检测结果表面跑动距离与击拍数之间方差膨胀因子较大，因此我们剔除二者之一的击拍数，
-使用剩下11个数据进行层次分析法。
 
-\subsection{层次分析法}
-我们为两种不同的发球类型（自己发球、对方发球）建立了两个矩阵;
-每个元素都显示了因子i和因子j之间的偏好程度。\\
-\indent 我们通过计算最大特征值并对其对应的特征向量进行归一化来获得每个部分的权重。
-我们使用组成比(CR)来检验每个矩阵的一致性，给定的数据为:…%𝑅=𝐼𝑅𝐼，
-其中，%𝐼= λ𝑚𝑎≥𝑛𝑛≥1，𝑅𝐼= 0.90(𝑛= 4)。
-三个矩阵的组成比分别为0.0612、0.0223和0.0301。
-因为它们都小于0.1，所以证实了矩阵的一致性。(需要看看)\\
+\subsection{Data Processing and Normalization}
+
+% 在进行数据分析之前，必须保证数据的可用性。如果基于不可靠的数据，
+% 无论其价值如何，任何措施都无法提供准确的评估。我们首先去除无用的信息，
+
+
+\subsection{Collinearity Detection}
+
+% 在对数据进行处理之后，考虑到同一类别的影响因素之间可能存在共线性，比如发球ace，
+% 一发得分率，前一分是否得分可能会相关，以及跑动距离，击拍数可能会相关，我们使用stata对数据进行
+% 共线性检测。检测结果表面跑动距离与击拍数之间方差膨胀因子较大，因此我们剔除二者之一的击拍数，
+% 使用剩下11个数据进行层次分析法。
+After processing the data, considering the potential collinearity among factors within the same category, such as serving aces, first-serve scoring rate, and whether the previous point was scored may be correlated, as well as running distance and the number of strokes possibly being related, we conducted collinearity detection using Stata. The results of the detection indicate a significant variance inflation factor between running distance and the number of strokes. Therefore, we decided to exclude one of them, choosing to retain the remaining 11 variables for the Analytic Hierarchy Process (AHP).
+
+
+\subsection{Analytic Hierarchy Process}
+% 我们在之前已经将包含的因素自上而下地分解成若干层次，同一层的诸因素从属于上一层的因素或对上层因素有影响，
+% 同时又支配下一层的因素或受到下层因素的作用。从层次结构的第2层开始，我们对影响上一层每个因素，
+% 构造比较矩阵，直到最下层。矩阵中的每个元素都显示了相同层次下，因子i和因子j之间的偏好程度。
+% 特别要注意的是，我们为两种不同的发球类型（自己发球、对方发球）
+% 分别建立了这样的一系列比较矩阵，这里以自己发球为例演示矩阵：
+
+We have previously decomposed the included factors from top to bottom into several levels, where factors within the same level are subordinate to factors in the level above or influence factors in the level above. They also dominate factors in the next level or are influenced by factors in the next level. Starting from the second level of the hierarchy, we construct comparison matrices for each factor influencing the factor in the level above, until reaching the bottom level. Each element in the matrix indicates the preference level between factor i and factor j at the same level. It is essential to note that we have separately established a series of such comparison matrices for two different serving types (serving by oneself and serving by the opponent). Here, we illustrate the matrix using serving by oneself as an example:
+
+
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.85]{imgs/1.png}
+    \includegraphics[scale=0.06]{imgs/2.jpg}
+    \caption{Comparison matrix for influencing factors and ability}
 \end{figure}
-做一个这样的图，参考23b题2300136
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.06]{imgs/3.jpg}
+    \caption{Comparison matrix for degree of fatigue and mantality}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.06]{imgs/4.jpg}
+    \caption{Comparison matrix for serving}
+\end{figure}
+
+
+% 我们通过计算最大特征值，并对其对应的特征向量进行归一化来获得每个部分的权重。
+% 当然，对于每个矩阵，我们首先需要使用组成比(CR)来检验一致性，其中，$CR=\frac{CI}{RI},
+% CI=\frac{\lambda_{max}-n}{n-1},RI=0,0.58,0.9(size=2,3,4)$，计算得到的矩阵组成比依次是0.076,0.037,
+% 0,0,0.046，因为它们都小于0.1，所以证实了矩阵的一致性。\\
+
+% \indent 因此，我们的模型权重依次为：
+
+We obtain the weights for each component by calculating the maximum eigenvalue and normalizing its corresponding eigenvector. Certainly, for each matrix, we first need to test consistency using the Consistency Ratio (CR), where \(CR=\frac{CI}{RI}\), \(CI=\frac{\lambda_{max}-n}{n-1}\), \(RI=0.0, 0.58, 0.9\) (for matrices of size \(2, 3, 4\)). The computed Consistency Ratios for the matrices are 0.076, 0.037, 0.0, 0.0, 0.046. Since they are all less than 0.1, it confirms the consistency of the matrices.\\
+
+\indent Therefore, the weights for our model are as follows:
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.65]{imgs/7.png}
+    \caption{Weights in two different situations}
+\end{figure}
+
+% 分析图表中各因素发现，影响程度最大的是前一个point是否得分，其次是运动距离，这也非常符合我们的常识。
+
+Analyzing the various factors in the chart, it is evident that the most impactful factor is whether the previous point was scored. Following closely is the distance covered during the play, which aligns well with common intuition.\\
+
+
+Thus, our final momentum is defined as:(need to change symbol)
+$$momentum=\begin{cases}
+    \sum\limits_{n=1,n\neq 5}^{11}\omega_n x_n, & \text{if the player serves}  \\
+    \sum\limits_{n=5}^{11}\omega_n x_n, & \text{if the opponent serves}
+\end{cases}$$
+Where $\omega_n(n=1,\dots,11)$ represent the weight of the factors, which is listed in Figure 4.\\
+
+Now, we illustrate the graph of the "momentum" in the first match:
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.65]{imgs/5.png}
+    \caption{Momentum change in the first competition(global and local)}
+\end{figure}
+
+% 我们可以发现“momentum”的变化是一个此消彼长的过程。
+
+It can be observed that the variation in "momentum" is a process of give and take.
+
+
 
 \end{document}
