@@ -8,22 +8,29 @@
     \toprule
     Symbols & Description \\ 
     \midrule
-    $P_{ace}$ & current probability of hitting an ace by a player \\
-    $P_{df}$ & current probability of double-faulting by a player \\
-    $P_{1st}$ & current first serve goal rate by a player \\
-    $P_{fw}$ & current probability of winning a served point within 3 rallies \\
-    $rd$ & current return depth of the player \\
-    $P_{win}$ & current probability of hitting a winner by a player \\
-    $P_{net}$ & current net win rate of a player \\
-    $dist$ & the player's running distance on the point \\
-    $P_{unf}$ & current probability of hitting an unforced error by a player \\
-    $scored$ & whether the player scored the current point \\
-    $diff$ & the score diffrence in the current game (by number of points) \\
-    $M$ & the current momentum of a player after a point \\
+    $player$ & the current player we are considering (e.g. while calculating momentum) \\
+    $point_i$ & the $i^{th}$ point of the match, a vector consists of fields stated in the given dictionary \\
+    $cur$ & the current index of the point, i.e. the match is currently at the $cur^{th}$ point \\
+    $H_i$ & denotes the set $\{point_{cur}, point_{cur - 1}, \ldots , point_{cur - i + 1}\}$ \\
+    $S_i$ & the set of latest $i$ points where $player$ serves\\
+    $R_i$ & the set of latest $i$ points where $player$ returns\\
+    $P_{ace}$ & current probability of hitting an ace by $player$ \\
+    $P_{df}$ & current probability of double-faulting by $player$ \\
+    $P_{1st}$ & current first serve goal rate by $player$ \\
+    $P_{fw}$ & current probability of $player$ winning a served point within 3 rallies \\
+    $rd$ & current return depth of $player$ \\
+    $P_{win}$ & current probability of hitting a winner by $player$ \\
+    $P_{net}$ & current net win rate of $player$ \\
+    $dist$ & $player$'s running distance on the point \\
+    $P_{unf}$ & current probability of hitting an unforced error by $player$ \\
+    $scored$ & whether $player$ scored the current point \\
+    $diff$ & the score diffrence for $player$ in the current game (by number of points) \\
+    $M$ & the current momentum of $player$ after a point \\
 
     \bottomrule
 \end{tabular}
 \end{table}
+To access a certain field in a point, we simply use the field name stated in the given dictionary as index, i.e. for a point $point$, we use $point_{ace}$ to denote the binary variable that shows whether $player$ hits an ace ball in the point.
 
 \subsection{Assumptions}
 

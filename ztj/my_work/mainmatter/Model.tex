@@ -7,10 +7,53 @@ Niche width is an indicator \cite{Alice13}
 \subsection{Model Overview}
 
 \subsection{Data Processing and Normalization}
-In order to obtain the factors used in our model, based on our assumptions, we calculate them using the following formulae: \par
+In order to quantify the factors used in our model, based on our assumptions, we calculate them using the following formulae: \par
 \begin{equation}
-    P_{ace} = 
+    P_{ace} = \frac{\sum_{p \in S_3} p_{ace}}{3}
 \end{equation}
+\begin{equation}
+    P_{df} = -\frac{\sum_{p \in S_3} p_{double\_fault}}{3}
+\end{equation}
+\begin{equation}
+    P_{1st} = \frac{\sum_{p \in S_3} [p_{serve\_no} = 1]}{3}
+\end{equation}
+\begin{equation}
+    P_{fw} = \frac{\sum_{p \in S_3} [p_{rally\_count} \le 3] [p_{point\_victor} = player]}{3}
+\end{equation}
+\begin{equation}
+    rd = \frac{\sum_{p \in R_3} \left\{
+        \begin{aligned}
+        0, && p_{return\_depth} = ND \\
+        1, && p_{return\_depth} = D \\
+        -1, && p_{return\_depth} = NA \\
+        \end{aligned}
+        \right.}{3}
+\end{equation}
+\begin{equation}
+    P_{win} = \frac{\sum_{p \in H_3} p_{winner}}{3}
+\end{equation}
+\begin{equation}
+    P_{net} = \frac{\sum_{p \in H_3} p_{net\_pt\_won}}{\sum_{p \in H_3} p_{net\_pt}}
+\end{equation}
+\begin{equation}
+    dist = \left\{
+        \begin{aligned}
+        0, && point_{cur, distance\_run} < 5 \\
+        -1, && point_{cur, distance\_run} > 45 \\
+        \frac{5 - point_{cur, distance\_run}}{40}, && otherwise \\
+        \end{aligned}
+        \right.
+\end{equation}
+\begin{equation}
+    P_{unf} = -\frac{\sum_{p \in H_3} p_{unf\_err}}{3}
+\end{equation}
+\begin{equation}
+    scored = [point_{cur, point\_victor} = player]
+\end{equation}
+\begin{equation}
+    diff = \frac{\sum_{p \in point}[p_{set\_no} = point_{cur, set\_no}][p_{game\_no} = point_{cur, game\_no}](2[p_{point\_victor} = player]-1)}{\min\{3, \sum_{p \in point}[p_{set\_no} = point_{cur, set\_no}][p_{game\_no} = point_{cur, game\_no}]\}}
+\end{equation}
+\par In order to normalize the data processed, we convert the original data to limit them in $[-1, 1]$. For those factors that negatively influence the momentum, such as $P_{df}$, we made sure it's in $[-1, 0]$. For those factors that positively influence the momentum, such as $P_{win}$, we made sure it's in $[0, 1]$. For those factors that influence the momentum in both ways, such as $diff$, we made sure it's in $[-1, 1]$.
 
 \begin{algorithm}
     \caption{An algorithm with caption}\label{alg:cap}
