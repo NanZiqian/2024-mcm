@@ -11,6 +11,18 @@ test
 
 \subsection{Restatement of the Problem}
 
+\paragraph{First Problem}
+
+Momentum is “strength or force gained by motion or by a series of 
+events.”It directly shows the player's current performance.
+To assess the players' performance, it is crucial to have a clear understanding of ``momentum.'' 
+We will focus on the following tasks: 
+\begin{itemize}
+    \item determine the influencing factors of ``momentum''
+    \item Quantify the variations in ``momentum'' .
+    \item Visualize the process of ``momentum'' changes.
+\end{itemize}
+
 \paragraph{Second Problem}
 
 ``momentum's role in the match'' means the level of momentum affects the future scores of the match.
@@ -20,6 +32,19 @@ To judge this autocorrelation and to use our model, we
 
 \begin{itemize}
     \item perform autocorrelation test on momentum, and perform correlation test between current momentum and future scores.
+\end{itemize}
+
+\subsection{Assumptions}
+
+To simplify the problem, we made the following assumptions:
+
+\begin{itemize}
+    \item \textbf{Assumption 1:} The \verb|px_unf_err| column of the data only counts those unforced errors that occurred when the player was hitting in baseline.\\
+    \textbf{Justification:} Usually when a player is at net, the point will end in a few strikes, and there's little probability that the player will hit an unforced error within that few strikes. What's more, the \verb|px_net_point| and \verb|px_net_point_won| columns of the data can predominantly reflect the player's ability at net, therefore reducing the impact of counting the unforced errors while at net.
+    
+    \item \textbf{Assumption 2:} The current performance on a certain aspect of a player can be reflected by the player's 3 latest shots of that aspect.\\
+    E.g. $P_{ace}$ can be reflected by the proportion of aces in the 3 latest \textbf{serves} of the player, $P_{win}$ can be reflected by the proportion of winners in the 3 latest \textbf{shots} of the player, $rd$ can be reflected by the return depth of the 3 latest \textbf{returns} of the player, etc. \\
+    \textbf{Justification:} The current performance of a player consists of the average performance and the status of the player at the moment, which can be comprehensively reflected in the player's performance on recent shots. For convenience, we specified that the 3 latest shots can reflect the player's current performance.
 \end{itemize}
 
 \subsection{Our Work}

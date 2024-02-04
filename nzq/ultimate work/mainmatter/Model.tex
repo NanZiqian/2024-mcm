@@ -1,17 +1,74 @@
 \section{Momentum Evaluation Model}
 
+\subsection{Model Overview}~{}
+
 To determine which player is performing better at a specific time, we create a indicator ``Momentum'' 
-to give a quantitative and overall evaluation.
+using the Analytic Hierarchy Process (AHP) to give a quantitative and overall evaluation.
 
-\begin{definition}
-    Niche width is the range of resources that a species can use.
-\end{definition}
-Niche width is an indicator \cite{Alice13}
+In typical AHP, we will break down the problems into five parts:
 
-\subsection{Model Overview}
+\begin{enumerate}
+    \item Problem Analysis
+    \item Data Cleaning and Normalization
+    \item Collinearity Detection
+    \item Analytic Hierarchy Process (AHP)
+\end{enumerate}
 
-\subsection{Data Processing and Normalization}
-In order to quantify the factors used in our model, based on our assumptions, we calculate them using the following formulae: \par
+\subsubsection{Problem Analysis}~{}
+
+\indent To investigate the reasons behind "momentum," we first need to provide a preliminary definition for "momentum." The magnitude of "momentum" is defined as $$f_{ijk}=\boldsymbol{\omega}\cdot\boldsymbol{x_{ijk}}$$
+where:
+\begin{enumerate}
+    \item $f_{ijk}$ represents the "momentum" of player $k$ before the $j$th point number in the $i$th match (in the order given by the table).
+    \item $\boldsymbol{x_{ijk}}$ is an $n$-dimensional column vector representing some influencing factors at the corresponding moment. Specific details will be provided later.
+    \item $\boldsymbol{\omega}$ is an $n$-dimensional row vector indicating the specific weights of the influencing factors, which will be obtained through the Analytic Hierarchy Process (AHP).
+    \item In this formula, there are two different calculation methods, one representing rounds where the player serves and the other representing rounds where the opponent serves. We can express it as $$\boldsymbol{\omega}=\boldsymbol{\omega_0} \circ \boldsymbol{\delta}=(\omega_0^{(0)}\delta^{(0)},\omega_0^{(1)}\delta^{(1)},\dots,\omega_0^{(n)}\delta^{(n)})$$ representing a vector formed by element-wise multiplication of two vectors of the same dimension. Here, $\boldsymbol{\delta}$ is a $0,1$ vector indicating whether it is the player's serving round. In the specific calculation, we will consider two cases separately.
+\end{enumerate}
+
+For the specific definition of $\boldsymbol{x_{ij}^{n}}$, we believe that, 
+in addition to whether the player is serving, many other factors can have an impact,
+including the player's skills, fatigue level, and real-time mental state of the games.
+Based on these three main aspects, 
+we have organized 12 factors as preliminary influencing factors, as follows:
+
+\subsubsection{Notations}~{}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{cccccc}
+    
+    \toprule
+    Symbols & Description \\ 
+    \midrule
+    $player$ & the current player we are considering (e.g. while calculating momentum) \\
+    $point_i$ & the $i^{th}$ point of the match, a vector consists of fields stated in the given dictionary \\
+    $cur$ & the current index of the point, i.e. the match is currently at the $cur^{th}$ point \\
+    $H_i$ & denotes the set $\{point_{cur}, point_{cur - 1}, \ldots , point_{cur - i + 1}\}$ \\
+    $S_i$ & the set of latest $i$ points where $player$ serves\\
+    $R_i$ & the set of latest $i$ points where $player$ returns\\
+    $P_{ace}$ & current probability of hitting an ace by $player$ \\
+    $P_{df}$ & current probability of double-faulting by $player$ \\
+    $P_{1st}$ & current first serve goal rate by $player$ \\
+    $P_{fw}$ & current probability of $player$ winning a served point within 3 rallies \\
+    $rd$ & current return depth of $player$ \\
+    $P_{win}$ & current probability of hitting a winner by $player$ \\
+    $P_{net}$ & current net win rate of $player$ \\
+    $dist$ & $player$'s running distance on the point \\
+    $P_{unf}$ & current probability of hitting an unforced error by $player$ \\
+    $scored$ & whether $player$ scored the current point \\
+    $diff$ & the score diffrence for $player$ in the current game (by number of points) \\
+    $M$ & the current momentum of $player$ after a point \\
+
+    \bottomrule
+\end{tabular}
+\end{table}
+To access a certain field in a point, we simply use the field name stated in the given 
+dictionary as index, i.e. for a point $point$, we use $point_{ace}$ to denote the binary 
+variable that shows whether $player$ hits an ace ball in the point.
+
+
+\subsubsection{Data Cleaning and Normalization}~{}
+
 \begin{equation}
     P_{ace} = \frac{\sum_{p \in S_3} p_{ace}}{3}
 \end{equation}
@@ -79,7 +136,7 @@ has a high impact on future performance. And if the correlation between momentum
 future scores is high, it means that the player with higher momentum has a higher
 chance to win the next multiple round.
 
-\paragraph{momentum autocorrelation}~{}
+\subsubsection{momentum autocorrelation}~{}
 
 To check if sequence of momentum is self-related, we calculate the Pearson correlation 
 between momentum and that with a time lag.
@@ -128,7 +185,7 @@ It can be seen that the autocorrelation of lag one is high, which means that the
 has a strong relationship with the momentum in the next round. And the autocorrelation decreases to random 
 as the lag increases.
 
-\paragraph{correlation with runs of success}~{}
+\subsubsection{correlation with runs of success}~{}
 
 To give a quantitative evaluation of ``future scores'', we count points gain in future multiple rounds,
 and derive the difference by minus that of the opponent. 
