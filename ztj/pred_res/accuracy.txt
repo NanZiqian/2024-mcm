@@ -1,0 +1,27 @@
+-----------model_max------------
+
+test set predict rate for step 1 is: 0.526668
+test set predict rate for step 2 is: 0.521902
+test set predict rate for step 3 is: 0.522177
+test set predict rate for step 4 is: 0.521444
+test set predict rate for step 5 is: 0.516954
+
+test set predict rate for step 1 is: 0.408657
+test set predict rate for step 2 is: 0.399853
+test set predict rate for step 3 is: 0.396919
+test set predict rate for step 4 is: 0.402788
+test set predict rate for step 5 is: 0.392883
+
+-----------model_sum------------
+
+test set predict rate for step 1 is: 0.427603
+test set predict rate for step 2 is: 0.403134
+test set predict rate for step 3 is: 0.398827
+test set predict rate for step 4 is: 0.401943
+test set predict rate for step 5 is: 0.406708
+
+test set predict rate for step 1 is: 0.424431
+test set predict rate for step 2 is: 0.406456
+test set predict rate for step 3 is: 0.396185
+test set predict rate for step 4 is: 0.391049
+test set predict rate for step 5 is: 0.391416
