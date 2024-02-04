@@ -486,7 +486,8 @@ address problem 3 . We will break down the problems into five parts:
 
 \begin{enumerate}
     \item definition of the swing of the play
-    \item indroduction of Gated Recurrent Unit(GRU) algorithm
+    \item Gated Recurrent Unit(GRU) algorithm
+    \item Permutation Feature Importance theory
     \item code
     \item second part analysis
 \end{enumerate}
@@ -546,5 +547,68 @@ We will focus on a single unit of recurrent neural network to interpret the hidd
     $$ h_t=z_t\odot h_{t-1}+(1-z_t)\odot h_t'$$ 
 \end{enumerate}
 
+\subsection{Permutation Feature Importance theory}
+
+We measure the importance of a feature by calculating the increase in the model’s prediction error 
+after permuting the feature. A feature is “important” if shuffling its values increases the model error, 
+because in this case the model relied on the feature for the prediction. A feature is “unimportant” if 
+shuffling its values leaves the model error unchanged, because in this case the model ignored the feature 
+for the prediction. 
+
+\begin{algorithm}  
+    \caption{Permutation Feature Importance}  
+    \textbf{Input:} Trained model $\hat{f}$, feature matrix $X$, target vector $y$, error measure $L(y, \hat{f})$.  
+      
+    Estimate the original model error $e_{orig} = L(y, \hat{f}(X))$ (e.g. mean squared error)  
+      
+    \textbf{For} each feature $j \in \{1, ..., p\}$ \textbf{do:}  
+      
+    \quad\quad $\circ$ Generate feature matrix $X_{perm}$ by permuting feature $j$ in the data $X$. This breaks the association between feature $j$ and true outcome $y$.  
+      
+    \quad\quad $\circ$ Estimate error $e_{perm} = L(Y, \hat{f}(X_{perm}))$ based on the predictions of the permuted data.  
+      
+    \quad\quad $\circ$ Calculate permutation feature importance as quotient $FI_j = e_{perm} / e_{orig}$ or difference $FI_j = e_{perm} - e_{orig}$  
+      
+    Sort features by descending FI.
+\end{algorithm}  
+
+\paragraph{Fourth Problem}
+In the previous section, we have only used the data of the first three matches. In this section we will focus on the generlization of the model.
+
+\subsection{test on all given data}
+
+We use our model in problem 3 in predicting all matches to verify its accuracy. Considering the difference length of the matches, we use weighted
+accuracy to denote the generability of our model. The fomula is as follows:
+$$ P_{avg}=\frac{1}{L_{tot}}\sum\limits_{matches}\frac{P_i}{L_i}$$
+where $L_i$ stands for the length of the match, we measure it by point number.
+
+So the general accuracy of our model in predicting matches is //////, \\
+following are some factors that are not included in our model, 
+all of which we think may influence the result, some of them may be hard to quantify, some of them are not included due to lack
+of data. Adding them to the model can make it more complete, this is left for future work.
+\begin{enumerate}
+    \item The change of the players' strategies, during the course of the game, they may become more 
+    familiar with the opponent's technical characteristics and make targeted changes to shift "momentum".
+    \item The possibility that the players intentionally hide their strength, this is similar to the previous item.
+    \item The incentive of the audience, this is more likely to have something to do with the difference of home and away,
+    just like football. The influence of the audience on foreign and native players is totally different.
+\end{enumerate}
+
+letter\\
+dear coach:\\
+
+We hope this letter finds you well. We are , a team with a keen interest in the training and development of tennis 
+athletes. We would like to share some discoveries of "momentum" during the match that We believe could be beneficial 
+for athlete training and play spot, using mathematical modeling as an analytical tool. After data analysis and modeling. 
+The following are some suggestions based on our analysis:\\
+
+
+We hope these suggestions are helpful for your coaching endeavors. 
+If you have any questions or would like to discuss this further and learn more detailed information, 
+you can read the full text of our model.Also, we would be more
+ than willing to discuss additional thoughts and insights with you.
+
 
 \end{document}
+
+
