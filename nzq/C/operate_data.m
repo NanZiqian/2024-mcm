@@ -84,8 +84,37 @@ for i = 1:length(matches_momentum(:,1))
 end
 % to check ith match at j+l time kth momentum condition is true or not,j = 1,...,match_cap(i)-runs-1
 % l = 0,1,2,3,4,k = 1,2,3,4 use momentum_5condition_20(match_index(i)+j-1,4*l+k)
-writematrix(momentum_5condition_20,'momentum_condition.csv');
-writematrix(match_index,'match_index.csv')
+% writematrix(momentum_5condition,'momentum_condition.csv');
+% writematrix(match_index,'match_index.csv')
+%% plot momentum condition in a match
+%1,2,3,4分别对应四种曲线
+%都用下一个point
+%momentum_5condition_predict(a:b,1),match duration is [a,b]
+a=1;b=300-runs-1;
+x = 1.5:0.5:b-a+2;
+x(2:2:length(x)) = x(2:2:length(x)) - 0.01;
+x(1:2:length(x)-1) = x(1:2:length(x)-1) - 0.49;
+y = [];
+for i = a:b
+    temp = momentum_5condition(i,1);
+    if temp == 1
+        y = [y,[1,1]];
+    elseif temp == 2
+        y = [y,[-1,1]];
+    elseif temp == 3
+        y = [y,[-1,-1]];
+    elseif temp == 4
+        y = [y,[1,-1]];
+    end
+end
+plot(x,y)
+title('momentum swings in match')
+xlabel('time')
+ylabel('momentum advantage')
+%都用未来第二个point
+
+%都用未来第三个point
+
 %% Calculte points difference in future multiple points at each time
 %p1_p2_5points
 R = zeros(5,match_number);
