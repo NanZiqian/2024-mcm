@@ -14,13 +14,13 @@ test
 \paragraph{First Problem}
 
 Momentum is “strength or force gained by motion or by a series of 
-events.”It directly shows the player's current performance.
+events.” It directly shows the player's current performance.
 To assess the players' performance, it is crucial to have a clear understanding of ``momentum.'' 
 We will focus on the following tasks: 
 \begin{itemize}
     \item determine the influencing factors of ``momentum''
-    \item Quantify the variations in ``momentum'' .
-    \item Visualize the process of ``momentum'' changes.
+    \item Quantify the variations in ``momentum''
+    \item Visualize the ``momentum'' function
 \end{itemize}
 
 \paragraph{Second Problem}
@@ -35,7 +35,33 @@ To judge this autocorrelation and to use our model, we
     \item perform correlation test between current momentum and future scores.
 \end{itemize}
 
+\paragraph{Third Problem}
 
+The goal of the third problem is to predict the swings of the play.
+Considering the extra tasks, we will split the problem into five parts:
+\begin{itemize}
+    \item define swing of the play
+    \item decide what data the prediction is based on
+    \item develop a model to predict the swings of the play
+    \item decide what among the data are the most decisive to the prediction
+    \item give advice to player based on the weights of the data
+\end{itemize}
+
+\paragraph{Fourth Problem}
+
+Testing the model on other matches is a process of generalization ability test.
+We will split the problem into five parts:
+\begin{itemize}
+    \item predict the swings on test data
+    \item compare the prediction with the momentum function in Problem 1
+    \item figure out reasons for the poor prediction
+    \item generalize all our models to Women's matches or other sports
+\end{itemize}
+
+\paragraph{Fifth Problem}
+
+The memo of advice for coaches on momentum, and players on preparation for potential momentum swings
+will be placed in the Appendix.
 
 \subsection{Assumptions}
 
@@ -45,8 +71,8 @@ To simplify the problem, we made the following assumptions:
     \item \textbf{Assumption 1:} The \verb|px_unf_err| column of the data only counts those unforced errors that occurred when the player was hitting in baseline.\\
     \textbf{Justification:} Usually when a player is at net, the point will end in a few strikes, and there's little probability that the player will hit an unforced error within that few strikes. What's more, the \verb|px_net_point| and \verb|px_net_point_won| columns of the data can predominantly reflect the player's ability at net, therefore reducing the impact of counting the unforced errors while at net.
     
-    \item \textbf{Assumption 2:} The current performance on a certain aspect of a player can be reflected by the player's 3 latest shots of that aspect.\\
-    E.g. $P_{ace}$ can be reflected by the proportion of aces in the 3 latest \textbf{serves} of the player, $P_{win}$ can be reflected by the proportion of winners in the 3 latest \textbf{shots} of the player, $rd$ can be reflected by the return depth of the 3 latest \textbf{returns} of the player, etc. \\
+    \item \textbf{Assumption 2:} The ``current performance'' we usually refer to on a certain aspect of a player can be reflected by the player's 3 latest shots of that aspect.\\
+    E.g. The current performance can be reflected by a combination of, the proportion of aces in the 3 latest \textbf{serves} of the player, the proportion of winners in the 3 latest \textbf{shots} of the player, the return depth of the 3 latest \textbf{returns} of the player, etc. \\
     \textbf{Justification:} The current performance of a player consists of the average performance and the status of the player at the moment, which can be comprehensively reflected in the player's performance on recent shots. For convenience, we specified that the 3 latest shots can reflect the player's current performance.
 \end{itemize}
 

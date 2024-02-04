@@ -3,14 +3,12 @@
 \subsection{Model Introduction}
 
 In this section, we will primarily focus on establishing a model using the Gated Recurrent Unit (GRU) algorithm to 
-address problem 3 . We will break down the problems into five parts:
+predict momentum swings. We will break down the problems into three parts:
 
 \begin{itemize}
     \item definition of the swing of the play
-    \item Gated Recurrent Unit(GRU) algorithm
-    \item Permutation Feature Importance theory
-    \item code
-    \item second part analysis
+    \item data and label used to train GRU
+    \item Gated Recurrent Unit (GRU) algorithm
 \end{itemize}
 
 \subsubsection{definition of the swing of the play}~{}
@@ -33,10 +31,15 @@ $$states=\begin{cases}
 \end{cases}$$
 Obviously, if state 2 or state 4 appears, we can determine that a swing has occurred. 
 
-\subsubsection{Indroduction of Gated Recurrent Unit (GRU) algorithm}
+\subsubsection{Data and Label used to train GRU}~{}
 
-GRU (Gated Recurrent Unit) is a type of recurrent neural network (RNN). It is similar to the LSTM 
-(Long Short-Term Memory). But compared to LSTM, GRU is more effective and easier to train.
+
+
+\subsubsection{Indroduction of Gated Recurrent Unit (GRU) algorithm}~{}
+
+Gated Recurrent Units (GRUs) are a type of recurrent neural network (RNN) 
+architecture that has gained popularity for sequential data processing. 
+And it is appropriate for our many(10)-to-many(5) prediction model.
 
 We will focus on a single unit of recurrent neural network to interpret the hidden mathematical principles:
 \begin{figure}[H]
@@ -68,6 +71,17 @@ We will focus on a single unit of recurrent neural network to interpret the hidd
     $$ h_t=z_t\odot h_{t-1}+(1-z_t)\odot h_t'$$ 
 \end{enumerate}
 
+
+
+\subsection{Visualization and Analysis}
+
+calculate the match percentage of each match between the prediction model and the result from AHP.
+
+\subsection{Weight of Factors}
+
+Permutation Feature Importance theory is used to measure the importance of a feature by calculating 
+the increase in the model's prediction error after permuting the feature.
+
 \subsubsection{Permutation Feature Importance theory}~{}
 
 We measure the importance of a feature by calculating the increase in the model’s prediction error 
@@ -91,13 +105,7 @@ for the prediction.
     \quad\quad $\circ$ Calculate permutation feature importance as quotient $FI_j = e_{perm} / e_{orig}$ or difference $FI_j = e_{perm} - e_{orig}$  
       
     Sort features by descending FI.
-\end{algorithm}  
-
-\subsection{Visualization and Analysis}
-
-calculate the match percentage of each match between the prediction model and the result from AHP.
-
-\subsection{Weight of Factors}
+\end{algorithm}
 
 If using match data of multiple different players, the factor with bigger weight is effective to 
 all players.
