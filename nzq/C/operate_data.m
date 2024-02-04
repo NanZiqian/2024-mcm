@@ -84,7 +84,7 @@ for i = 1:length(matches_momentum(:,1))
 end
 % to check ith match at j+l time kth momentum condition is true or not,j = 1,...,match_cap(i)-runs-1
 % l = 0,1,2,3,4,k = 1,2,3,4 use momentum_5condition_20(match_index(i)+j-1,4*l+k)
-writematrix(momentum_5condition_20,'momentum_condition.csv');
+writematrix(momentum_5condition,'momentum_condition.csv');
 writematrix(match_index,'match_index.csv')
 %% Calculte points difference in future multiple points at each time
 %p1_p2_5points
