@@ -1,14 +1,15 @@
 \section{Swing Prediction Model}
 
-\subsection{Model Introduction}
+\subsection{Model Introduction}~{}
 
 To predict the swings, we need to find potential factors that may affect future momentum.
 In problem 1, we established a standard to judge the player's performance;
 in problem 2, we found the player's performance, ``momentum'', has a one order of autocorrelation,
 which indicates that some factors of the momentum have impact on the future momentum.
 
-To find what and how these factors affect the future momentum, we can take advantage 
-of Machine Learning.In this section, we will primarily focus on establishing a model using the Gated Recurrent Unit (GRU) network to 
+To find what and how factors affect the future momentum, we can take advantage 
+of Machine Learning. In this section, we will primarily focus on establishing a 
+supervised learning classification model using the Gated Recurrent Unit (GRU) network to 
 predict momentum swings. We will break down the problems into three parts:
 
 \begin{itemize}
@@ -69,18 +70,26 @@ Here we display the momentum swings of first three matches.
 
 \subsubsection{Data and Label used to train GRU}~{}
 
-The data's feature we select is skill statistics, including unforced error, fast win, and running distance.
+To verify all potential factors, meanwhile avoiding over-fitting due to the large number of features,
+the data's feature we select is \dots
+
+What's more, we want to find out can swings merely be predicted by the technical data,
+therefore we delete \verb|scored_last_point, score_diff, game_victor, set_victor| before we train a second model.
 
 The label we use is the state of the swing derived from model of AHP.
 
 we use different sets of data to train and derive different models.
 
-First, we will train the model with data from all matches available.
+\begin{itemize}
+    \item First, we will train the model with data from all matches available.
+    \item Then, we will train a new model with data from a single player.
+    \item Finally, we will train the model with part of available match statistics and examine
+    the generalization ability that accurately predict the swings in irrelevant players and matches.
+\end{itemize}
 
-Then, we will train the model with data from a single player.
 
-Finally, we will train the model with part of available match statistics and examine
-the generalization ability that accurately predict the swings in irrelevant players and matches.
+
+
 
 \subsubsection{Utilizing the Gated Recurrent Unit (GRU) Network}~{}
 
