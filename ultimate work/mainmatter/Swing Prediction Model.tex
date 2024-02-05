@@ -25,16 +25,16 @@ Based on our previous definition of ``momentum,'' the significant changes of the
 largely depend on the ``momentum'' of the two players. Therefore, we choose ``momentum'' to represent 
 the swings of the play. The specific definition is as follows:\\
 
-We use $\Delta f(t)$ to represent the difference in ``momentum'' between the two players., 
-so it can be easily seen that if $\Delta f(t)$ and $\Delta f(t+1)$
+We use $\Delta M(t)$ to represent the difference in ``momentum'' between the two players., 
+so it can be easily seen that if $\Delta M(t)$ and $\Delta M(t+1)$
 have different signs, it indicates a ``swing'' in the game's momentum. 
 In this way, we can define four states of ``momentum'' at time $t$:
 
 $$states=\begin{cases}
-    state1, &\text{if } \Delta f(t)>0 \text{ and } \Delta f(t+1)>0, \text{ which means stay positive}\\
-    state2, &\text{if } \Delta f(t)<0 \text{ and } \Delta f(t+1)>0, \text{ which means rise from negative to positive}\\
-    state3, &\text{if } \Delta f(t)<0 \text{ and } \Delta f(t+1)<0, \text{ which means stay negative}\\
-    state4, &\text{if } \Delta f(t)>0 \text{ and } \Delta f(t+1)<0, \text{ which means decrease from positive to negative}
+    state1, &\text{if } \Delta M(t)>0 \text{ and } \Delta M(t+1)>0, \text{ which means stay positive}\\
+    state2, &\text{if } \Delta M(t)<0 \text{ and } \Delta M(t+1)>0, \text{ which means rise from negative to positive}\\
+    state3, &\text{if } \Delta M(t)<0 \text{ and } \Delta M(t+1)<0, \text{ which means stay negative}\\
+    state4, &\text{if } \Delta M(t)>0 \text{ and } \Delta M(t+1)<0, \text{ which means decrease from positive to negative}
 \end{cases}$$
 Obviously, if state 2 or state 4 appears, we can determine that a swing has occurred. 
 
