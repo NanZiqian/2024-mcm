@@ -11,7 +11,7 @@ predict momentum swings. We will break down the problems into three parts:
     \item Gated Recurrent Unit (GRU) algorithm
 \end{itemize}
 
-\subsubsection{definition of the swing of the play}~{}
+\subsubsection{Definition of ``Swings of the Play''}~{}
 
 We first give the definition of the swings of the play.
 Based on our previous definition of ``momentum,'' the significant changes of the game 
@@ -31,11 +31,41 @@ $$states=\begin{cases}
 \end{cases}$$
 Obviously, if state 2 or state 4 appears, we can determine that a swing has occurred. 
 
+To visualize the swing, we choose four shapes of lines to represent the four states of swings at time $t$:
+
+\begin{figure}[H]
+    \centering
+        \includegraphics[width=\linewidth]{mainmatter/photos/states.jpg}
+    \caption{visualization of swings, from state1 to state4}
+    \label{fig:states}
+\end{figure}
+
+Here we display the momentum swings of first three matches.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.34\textwidth}
+        \includegraphics[width=\linewidth]{mainmatter/photos/swing_match1.png}
+        \caption{swings in match 1}
+    \end{subfigure}\hspace{-0.02\textwidth}
+    \begin{subfigure}[b]{0.34\textwidth}
+        \includegraphics[width=\linewidth]{mainmatter/photos/swing_match2.png}
+        \caption{swings in match 2}
+    \end{subfigure}\hspace{-0.02\textwidth}
+    \begin{subfigure}[b]{0.34\textwidth}
+        \includegraphics[width=\linewidth]{mainmatter/photos/swing_match3.png}
+        \caption{swings in match 3}
+    \end{subfigure}
+    \caption{swings in first three matches}
+    \label{fig:swings in matches}
+\end{figure}
+
+
 \subsubsection{Data and Label used to train GRU}~{}
 
 
 
-\subsubsection{Indroduction of Gated Recurrent Unit (GRU) algorithm}~{}
+\subsubsection{Use of Gated Recurrent Unit (GRU) Network}~{}
 
 Gated Recurrent Units (GRUs) are a type of recurrent neural network (RNN) 
 architecture that has gained popularity for sequential data processing. 

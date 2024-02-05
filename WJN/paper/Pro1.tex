@@ -344,9 +344,6 @@ We will focus on the following tasks:
     \item Visualize the process of "momentum" changes.
 \end{enumerate}
  
-
-
-
 \section{Model Review}
 
 In this section, we will primarily focus on establishing a model using the Analytic Hierarchy Process (AHP) to address problems 1 and 2. We will break down the problems into five parts:
@@ -600,6 +597,10 @@ of data. Adding them to the model can make it more complete, this is left for fu
     just like football. The influence of the audience on foreign and native players is totally different.
 \end{enumerate}
 
+As for women's tennis, it is a pity that we did not find enough data online, but from all men's match predictions, the 
+accuracy rate is stable, so we have every reason to believe that our data can also apply to women's matches. For table tennis,
+
+
 letter\\
 dear coach:\\
 
@@ -649,7 +650,74 @@ Indroduction\\
 Tennis more than any other sport, is a game of momentum. 
 The absence of a clock to do the dirty work of finishing off an opponent, 
 and a scoring system basedon units used, makes the flow of the match much more important than any 
-lead that has been established.--Chuck Kriese
+lead that has been established.--Chuck Kriese\\
+
+problem3
+
+Using the above argorithm, we sort FI and normalize them, then we plot the figure:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{imgs/8.png}
+    \caption{feature importance}
+\end{figure}
+
+We can see that the most important feature is fast win(rally count < 3 and wins the point),
+and the second most important feature is unforced error. Compared to problem 1(main skill features are
+running distance, unforced error and fast win),they coincide. The running distance become insignificant, 
+we think it is because this factor is also related to fast win.
+
+
+
+As for women's tennis, it is a pity that we did not find enough data online, but from all men's match predictions, the 
+accuracy rate is stable, so we have every reason to believe that our data can also apply to women's matches. \\
+For table tennis, technical statistics also includes: 
+\begin{enumerate}
+    \item more serve types, such asforehand, backhand, short, long, or sidespin serves.
+    \item more receiving techniques,such as forehand push, backhand push, flick, or topspin.
+\end{enumerate}
+So we need to modify the influencing factors in our model, but the general framework is similar.
+
+
+
+User
+what is general technical statistics in table tennis games
+ChatGPT
+In table tennis, general technical statistics refer to the analysis and measurement of various technical aspects of a player's performance during a match. These statistics provide valuable insights into a player's strengths, weaknesses, and overall playing style. Here are some general technical statistics commonly used in table tennis games:
+
+Serve Statistics:
+
+Serve Type: Recording the types of serves a player employs, such as forehand, backhand, short, long, or sidespin serves.
+Serve Effectiveness: Analyzing the success rate of different types of serves, including direct points and opponent errors.
+Receiving Statistics:
+
+Receiving Techniques: Documenting how a player receives various types of serves, such as forehand push, backhand push, flick, or topspin.
+Receiving Success Rate: Calculating the player's success rate in returning different types of serves.
+Stroke Execution Statistics:
+
+Forehand and Backhand Shots: Analyzing the usage and effectiveness of forehand and backhand strokes in various situations.
+Types of Strokes: Recording the diversity of strokes played, including topspin, backspin, drives, and smashes.
+Rally Statistics:
+
+Rally Length: Measuring the average length of rallies in terms of the number of strokes exchanged.
+Rally Outcome: Tracking the outcomes of rallies, such as points won or lost, and identifying patterns in rally progression.
+Placement and Direction Statistics:
+
+Ball Placement: Analyzing where a player tends to place the ball on the opponent's side of the table.
+Direction of Shots: Recording the direction of shots, including cross-court, down the line, and shots to the opponent's body.
+Point Distribution Statistics:
+
+Point Sources: Identifying the sources of points, such as winners, opponent errors, or forced errors.
+Point Distribution: Analyzing how points are distributed throughout the match, helping to identify key moments.
+Error Analysis:
+
+Unforced Errors: Documenting the number of unforced errors made by a player.
+Forced Errors: Identifying instances where the opponent's play led to errors by the player.
+
+These technical statistics are crucial for players, coaches, and analysts to assess performance, 
+strategize for future matches, and tailor training programs to address specific areas of improvement. 
+They provide a comprehensive overview of a player's game and contribute to a more informed and strategic 
+approach to table tennis.
 
 \end{document}
 

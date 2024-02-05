@@ -36,3 +36,15 @@ test set predict rate for step 2 is: 0.449010
 test set predict rate for step 3 is: 0.418562
 test set predict rate for step 4 is: 0.418562
 test set predict rate for step 5 is: 0.415994
+---no training
+train set predict rate for step 1 is: 0.182735
+train set predict rate for step 2 is: 0.182093
+train set predict rate for step 3 is: 0.194923
+train set predict rate for step 4 is: 0.317357
+train set predict rate for step 5 is: 0.181635
+
+test set predict rate for step 1 is: 0.176816
+test set predict rate for step 2 is: 0.176816
+test set predict rate for step 3 is: 0.191489
+test set predict rate for step 4 is: 0.319883
+test set predict rate for step 5 is: 0.172414
