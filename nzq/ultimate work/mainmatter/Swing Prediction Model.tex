@@ -74,6 +74,7 @@ To verify all potential factors, meanwhile avoiding over-fitting due to the larg
 the data's feature we select is \dots
 
 What's more, we want to find out can swings merely be predicted by the technical data,
+so that we can give advice to players on skills,
 therefore we delete \verb|scored_last_point, score_diff, game_victor, set_victor| before we train a second model.
 
 The label we use is the state of the swing derived from model of AHP.
@@ -83,13 +84,14 @@ we use different sets of data to train and derive different models.
 \begin{itemize}
     \item First, we will train the model with data from all matches available.
     \item Then, we will train a new model with data from a single player.
-    \item Finally, we will train the model with part of available match statistics and examine
-    the generalization ability that accurately predict the swings in irrelevant players and matches.
+    \item Finally, we will train the model with part of available match statistics
 \end{itemize}
 
-
-
-
+From the first model, we can find the important factors that affect all players' momentum swings.
+From the second model, we can find the important factors that affect 
+especially well on that player's momentum swings.
+From the third model, we can examine
+the generalization ability to accurately predict the swings in irrelevant players and matches.
 
 \subsubsection{Utilizing the Gated Recurrent Unit (GRU) Network}~{}
 
