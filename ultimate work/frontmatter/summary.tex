@@ -32,17 +32,23 @@ Momentum has a maximum correlation coefficient of 0.7934 with next score.
 
 In problem 3, to predict the swings in the match, we established model based on Gated Recurrent Unit (GRU) network.
 We first define the swings and classify them into four patterns, then we processed data that's suitable for training.
-We trained different model out of different purposes, most importantly data with and without recent scores, 
-and found that the accuracy on test data is around 0.4274.
+We trained different model out of different purposes, most importantly data with and without recent scores.
+We found that the accuracy on test data is around 0.4274.
 Better than random guess of the four patterns.
 
-To identify the most related factors, we use a novel algorithm called Permutation Feature Importance argorithm.
+To identify the most related factors, we use a novel algorithm called Permutation Feature Importance algorithm.
 It can determine the importance of features of input in neural network. We find that the most important feature while
-with recent score is still the score difference, and without, whether win within 3 rally count.
+with recent score is still the score difference, and without, whether win within 3 rally count,
+from which we inferred that recent scores has significant impact on momentum,
+improving our understanding of problem 2.
 
 As for the advice for athletes, we trained model on their matches to identify their feature importance,
 so we can provide them with customized advice.
 
-In problem 4, 
+In problem 4, we chose model trained on half of the data and tested on the other half, and the accuracy is around 0.4115.
+As for women's tennis and table tennis, sadly we failed to find abundant data to train the model.
+But the path forward after finding the data is clear, we reassess AHP and train the GRU network.
 
-Key words: AHP, correlation analysis, GRU, Permutation Feature Importance
+The letter including advice for coaches and athletes is attached in the appendix.
+
+Key words: Momentum in Tennis, AHP, correlation analysis, GRU, Permutation Feature Importance
