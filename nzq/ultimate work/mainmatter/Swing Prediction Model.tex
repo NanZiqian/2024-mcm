@@ -161,35 +161,38 @@ Here's the difference of first three matches on training data.
 
 Here's the difference of first three matches on test data.
 
-calculate the match percentage of each match between the prediction model and the result from AHP.
 
-\subsection{Weight of Factors}
 
-Permutation Feature Importance theory is used to measure the importance of a feature by calculating 
-the increase in the model's prediction error after permuting the feature.
+Together with other predictions the figures can be concluded as the table below:
 
-Using the above argorithm, we sort FI and normalize them, then we plot the figure:
+\subsubsection{Prediction Error compared with AHP model outcome}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.6]{mainmatter/imgs/8.png}
-    \caption{feature importance}
-\end{figure}
+Overlap rate of the prediction model and the result from AHP is?
 
-We can see that the most important feature is fast win(rally count < 3 and wins the point),
-and the second most important feature is unforced error. Compared to problem 1(main skill features are
-running distance, unforced error and fast win),they coincide. The running distance become insignificant, 
-we think it is because this factor is also related to fast win.
+\paragraph{Factors we may fail to consider}~{}
+
+First of all, the AHP model is not considering all possible factors to momentum.
+For example, the.
+So the overlap rate's effectiveness is limited.
+
+Then, from the conclusion of problem 2, momentum only has one order of autocorrelation.
+So when we try to predict the far future momentum, there's no reason to be accurate.
+
+\subsection{Weight of Factors}~{}
+
+If we can derive the derivative of output with respect to input, we can get the weight of factors.
+Although it's difficult to directly acquire derivative, we can use Permutation Feature Importance theory
+to avoid getting the derivative.
 
 \subsubsection{Permutation Feature Importance theory}~{}
 
-We measure the importance of a feature by calculating the increase in the model’s prediction error 
-after permuting the feature. A feature is “important” if shuffling its values increases the model error, 
+Permutation Feature Importance theory is used to measure the importance of a feature by calculating 
+the increase in the model's prediction error after permuting the feature. A feature is “important” if shuffling its values increases the model error, 
 because in this case the model relied on the feature for the prediction. A feature is “unimportant” if 
 shuffling its values leaves the model error unchanged, because in this case the model ignored the feature 
 for the prediction. 
 
-\begin{algorithm}  
+\begin{algorithm}[H]
     \caption{Permutation Feature Importance}  
     \textbf{Input:} Trained model $\hat{f}$, feature matrix $X$, target vector $y$, error measure $L(y, \hat{f})$.  
       
@@ -206,15 +209,45 @@ for the prediction.
     Sort features by descending FI.
 \end{algorithm}
 
-If using match data of multiple different players, the factor with bigger weight is effective to 
-all players.
+Using the model trained on all matches available, and the above argorithm,
+we sort FI and normalize them, then we plot the figure:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{mainmatter/imgs/8.png}
+    \caption{feature importance}
+\end{figure}
+
+We can see that the most important feature is fast win (rally count $<$ 3 and wins the point),
+and the second most important feature is unforced error. Compared to problem 1 (main skill features are
+running distance, unforced error and fast win), they coincide. The running distance become insignificant, 
+we think it is because this factor is also related to fast win.
+
+The two factors are the most important factors that affect all players.
+
+Using the model with recent score data, we plot the figure:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{mainmatter/imgs/weight_with_score.jpg}
+    \caption{feature importance}
+\end{figure}
+
+We can find out that the most important feature is the score difference,
+way more important than technical features. 
+This is because we find out that the recent score condition is the most direct factor to the momentum.
+Now we have expanded our knowledge to problem 2, that among multiple factors
+that affect future momentum, 
+the recent score condition is the most important.
 
 \subsection{Advice against Opponent Based on Weight of Factors}~{}
 
-If using match data of a single player, the factor with bigger weight is extremely effective to 
-this player.
+As said previously, model trained from match data of a single player,
+the factor with bigger weight is extremely effective to this player.
 
-Now we choose three players:rublev(three matches), sinner(four matches), alcaraz(five matches), and 
+And to give specific advice against the opponent, we choose the model trained on technical data.
+
+We choose three players:rublev(three matches), sinner(four matches), alcaraz(five matches), and 
 we use the feature analysis method in problem 3 to find their features, the result is as follows:
 \begin{figure}[H]
     \centering
@@ -237,16 +270,3 @@ we use the feature analysis method in problem 3 to find their features, the resu
 \end{enumerate}
 
 Now we have finished Problem 3.
-
-\subsection{Prediction Error compared with AHP model outcome}
-
-Overlap rate of the prediction model and the result from AHP is?
-
-\paragraph{Factors we may fail to consider}
-
-First of all, the AHP model is not considering all possible factors to momentum.
-For example, the.
-So the overlap rate's effectiveness is limited.
-
-Then, from the conclusion of problem 2, momentum only has one order of autocorrelation.
-So when we try to predict the far future momentum, there's no reason to be accurate.
