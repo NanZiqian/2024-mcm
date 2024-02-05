@@ -29,3 +29,20 @@ match 28: point 10-171 in train set (for TWO times, one for each player), point 
 match 29: point 10-124 in train set (for TWO times, one for each player), point 125-153 in test set (for TWO times, one for each player).
 match 30: point 10-159 in train set (for TWO times, one for each player), point 160-196 in test set (for TWO times, one for each player).
 match 31: point 10-264 in train set (for TWO times, one for each player), point 265-328 in test set (for TWO times, one for each player).
+
+in MATLAB,
+ith match
+time j=a:b
+player p=1,2
+momentum_5condition(match_index(i)-1+j,p)
+
+to read csv in MATLAB
+csv_cap(i) = 237-10+1,158-10+1,...
+csv_match_index(i) = 1,2*csv_cap(i-1)+csv_match_index(i-1),...
+ith match
+time j=a:b, for example=11:238
+player p=1,2
+pred_mom_con(csv_match_index(i)+(p-1)*csv_cap(i,1),:) is time at 11
+pred_mom_con(csv_match_index(i)+csv_cap(i)-1+(p-1)*csv_cap(i,1),:) is time at 11+csv_cap(i)-1
+
+pred_mom_con(csv_match_index(i)+j-11+(p-1)*csv_cap(i,1),:)
