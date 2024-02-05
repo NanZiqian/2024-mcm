@@ -2,13 +2,13 @@
 
 \subsection{Model Introduction}
 
-In this section, we will primarily focus on establishing a model using the Gated Recurrent Unit (GRU) algorithm to 
+In this section, we will primarily focus on establishing a model using the Gated Recurrent Unit (GRU) network to 
 predict momentum swings. We will break down the problems into three parts:
 
 \begin{itemize}
     \item definition of the swing of the play
     \item data and label used to train GRU
-    \item Gated Recurrent Unit (GRU) algorithm
+    \item Utilizing Gated Recurrent Unit (GRU)
 \end{itemize}
 
 \subsubsection{Definition of ``Swings of the Play''}~{}
@@ -65,7 +65,7 @@ Here we display the momentum swings of first three matches.
 
 
 
-\subsubsection{Use of Gated Recurrent Unit (GRU) Network}~{}
+\subsubsection{Utilizing the Gated Recurrent Unit (GRU) Network}~{}
 
 Gated Recurrent Units (GRUs) are a type of recurrent neural network (RNN) 
 architecture that has gained popularity for sequential data processing. 
@@ -111,6 +111,19 @@ calculate the match percentage of each match between the prediction model and th
 
 Permutation Feature Importance theory is used to measure the importance of a feature by calculating 
 the increase in the model's prediction error after permuting the feature.
+
+Using the above argorithm, we sort FI and normalize them, then we plot the figure:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{mainmatter/imgs/8.png}
+    \caption{feature importance}
+\end{figure}
+
+We can see that the most important feature is fast win(rally count < 3 and wins the point),
+and the second most important feature is unforced error. Compared to problem 1(main skill features are
+running distance, unforced error and fast win),they coincide. The running distance become insignificant, 
+we think it is because this factor is also related to fast win.
 
 \subsubsection{Permutation Feature Importance theory}~{}
 
