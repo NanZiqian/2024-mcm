@@ -3,7 +3,7 @@
 \subsection{Model Introduction}~{}
 
 To determine which player is performing better at a specific time, we create an indicator ``Momentum'' 
-using the Analytic Hierarchy Process (AHP) to give a quantitative and overall evaluation.
+using the Analytic Hierarchy Process (AHP) \cite{AHP}to give a quantitative and overall evaluation.
 
 \indent To investigate the reasons behind ``momentum'', we first need to provide a preliminary definition for ``momentum''. The magnitude of ``momentum'' is defined as 
 $$M=\boldsymbol{\omega}\cdot\boldsymbol{x}$$
@@ -112,6 +112,7 @@ we have organized 12 factors as preliminary influencing factors, as follows:
 \begin{equation}
     diff = \frac{\sum_{p \in point}[p_{set\_no} = point_{cur, set\_no}][p_{game\_no} = point_{cur, game\_no}](2[p_{point\_victor} = player]-1)}{\min\{3, \sum_{p \in point}[p_{set\_no} = point_{cur, set\_no}][p_{game\_no} = point_{cur, game\_no}]\}}
 \end{equation}
+
 \par In order to normalize the data processed, we convert the original data to limit them in $[-1, 1]$. 
 For those factors that negatively influence the momentum, such as $P_{df}$, we made sure it's in $[-1, 0]$. For those factors that positively influence the momentum, such as $P_{win}$, we made sure it's in $[0, 1]$. For those factors that influence the momentum in both ways, such as $diff$, we made sure it's in $[-1, 1]$.
 
@@ -123,7 +124,15 @@ be correlated, as well as running distance and the number of strokes possibly be
 we conduct collinearity detection using Stata. The results of the detection indicate a
 significant variance inflation factor between running distance and the number of strokes. 
 Therefore, we decided to exclude one of them, choosing to retain the remaining 11 variables 
-for the Analytic Hierarchy Process (AHP).
+for the Analytic Hierarchy Process (AHP), as follows:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{mainmatter/imgs/11.png}
+    \caption{Non-collinear factors}
+    \label{fig:11var}
+\end{figure}
+
 
 \subsubsection{Analytic Hierarchy Process}~{}
 

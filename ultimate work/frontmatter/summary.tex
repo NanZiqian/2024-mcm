@@ -16,7 +16,7 @@ But in most sports, they are not the only determining factors of the outcome of 
 A young and fearless athlete may surprisingly defeat a veteran, or
 even the most acknowledged and well-known athlete may lose a match due to a momentary lapse in concentration
 and the tide it raises. Sometimes the outcome seems destined to be altered by a force, even multiple times.
-We call it momentum.\cite{Alice13} Such is the charm of sports, and such is the charm of tennis.
+We call it momentum. Such is the charm of sports, and such is the charm of tennis.
 Out of curiosity, we are interested in studying the momentum, a mysterious force in tennis
 with modern methods.
 
@@ -30,11 +30,16 @@ and we find that it has strong first-order autocorrelation (0.5149). Then we qua
 the future scores and then determine the correlation between momentum and future scores, they are highly correlated.
 Momentum has a maximum correlation coefficient of 0.7934 with next score.
 
-In problem 3, to predict the swings in the match, we established model based on Gated Recurrent Unit (GRU) network.
-We first define the swings and classify them into four patterns, then we processed data that's suitable for training.
-We trained different model out of different purposes, most importantly data with and without recent scores.
-We found that the accuracy on test data is around 0.4274.
-Better than random guess of the four patterns.
+In problem 3, to predict the swings in the match, we established classification model based on Gated Recurrent Unit (GRU),
+a type of neural network.
+We first define the swings and classify them into four patterns, so the future swing can be classified into
+four categories.Then we processed data that's suitable for training, and trained different model out of different purposes.
+
+We trained model with data with and without recent scores, figure out recent scores' impact on future swings.
+We trained model with data of a single player, to give customized advice.
+And we trained model with data of all matches, to figure out general factors that affect future swings of all players.
+We found that the accuracy on test data of all models is around 0.4274, better than random guess of the four patterns,
+which implies that swings can be predicted using our model.
 
 To identify the most related factors, we use a novel algorithm called Permutation Feature Importance algorithm.
 It can determine the importance of features of input in neural network. We find that the most important feature while
@@ -51,4 +56,4 @@ But the path forward after finding the data is clear, we reassess AHP and train 
 
 The letter including advice for coaches and athletes is attached in the appendix.
 
-Key words: Momentum in Tennis, AHP, correlation analysis, GRU, Permutation Feature Importance
+Key words: Momentum in Tennis, AHP, Correlation Analysis, GRU, Permutation Feature Importance

@@ -112,7 +112,7 @@ From the third model, we can examine
 the generalization ability to accurately predict the swings in irrelevant players and matches.
 
 \subsubsection{Utilizing the Gated Recurrent Unit (GRU) Network}~{}
-Gated Recurrent Units (GRUs) are a type of recurrent neural network (RNN) 
+Gated Recurrent Units (GRUs)\cite{GRU} are a type of recurrent neural network (RNN) 
 architecture that has gained popularity for sequential data processing. 
 And it is appropriate for our many(10)-to-many(5) prediction model.
 
@@ -293,12 +293,12 @@ So when we try to predict the far future momentum, there's no reason to be accur
 \subsection{Weight of Factors}~{}
 
 If we can derive the derivative of output with respect to input, we can get the weight of factors.
-Although it's difficult to directly acquire derivative, we can use Permutation Feature Importance theory
+Although it's difficult to directly acquire derivative, we can use Permutation Feature Importance theory\cite{Permutation}
 to avoid getting the derivative.
 
 \subsubsection{Permutation Feature Importance theory}~{}
 
-Permutation Feature Importance theory is used to measure the importance of a feature by calculating 
+Permutation Feature Importance theory\cite{Weight} is used to measure the importance of a feature by calculating 
 the increase in the model's prediction error after permuting the feature. A feature is “important” if shuffling its values increases the model error, 
 because in this case the model relied on the feature for the prediction. A feature is “unimportant” if 
 shuffling its values leaves the model error unchanged, because in this case the model ignored the feature 
