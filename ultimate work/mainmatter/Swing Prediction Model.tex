@@ -112,7 +112,6 @@ From the third model, we can examine
 the generalization ability to accurately predict the swings in irrelevant players and matches.
 
 \subsubsection{Utilizing the Gated Recurrent Unit (GRU) Network}~{}
-
 Gated Recurrent Units (GRUs) are a type of recurrent neural network (RNN) 
 architecture that has gained popularity for sequential data processing. 
 And it is appropriate for our many(10)-to-many(5) prediction model.
@@ -147,7 +146,33 @@ We will focus on a single unit of recurrent neural network to interpret the hidd
     $$ h_t=z_t\odot h_{t-1}+(1-z_t)\odot h_t'$$ 
 \end{enumerate}
 
-So, we can predict the momentum swings from the technical data of the past 10 points.
+Moreover, we need the network to produce 5 outputs to predict the 5 points. To do this, we add 5 fully-connected layers to the output of the GRU, each of them producing one output we need.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{mainmatter/imgs/10.png}
+    \caption{Structure of the whole network}
+\end{figure}
+
+The effectiveness of the cross entropy loss function in classification problems has been proven by pratice. In our model, we also choose this function as our loss function. To tackle the problem that our model has multiple tasks (namely,  it has to predict the possible momentum swings in the 5 future points), we slightly modified the function to cater to our need. The definition of the function is as follows:
+\begin{equation}
+    loss(\boldsymbol{p}, \boldsymbol{t}) := \sum_{i = 1}^5 H(p_i, t_i)
+\end{equation}
+Where $\boldsymbol{p} = [p_1, p_2, p_3, p_4, p_5]$ is the predicted probability distribution of each of the 5 future points, and $\boldsymbol{t} = [t_1, t_2, t_3, t_4, t_5]$ is the states that the momentum at those points are in. $H$ is the cross entropy function:
+\begin{equation}
+    \left.
+        \begin{aligned}
+        H(p, tar) &= -\ln (\frac{\exp p(tar)}{\sum_{j = 1}^{4} \exp p(j)}) \\
+         &= -p(tar) + \ln(\sum_{j = 1}^{4} \exp p(j))
+        \end{aligned}
+    \right.
+\end{equation}
+
+By observing this function, we can see it gives proper bonus on predicting the right result and penalty on predicting the wrong ones.
+
+Also, by adding up the losses of 5 points, which is equivalent to calculating the average loss on the 5 classification tasks, we can efficiently backward the losses to the whole network in a single backward step, which makes it easy for training and testing the model.
+
+With this model, we can predict the momentum swings from the technical data of the past 10 points.
 
 \subsection{Visualization and Analysis}~{}
 
