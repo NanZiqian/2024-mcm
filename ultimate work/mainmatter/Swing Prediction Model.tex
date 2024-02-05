@@ -321,8 +321,8 @@ for the prediction.
     Sort features by descending FI.
 \end{algorithm}
 
-Using the model trained on all matches available, and the above argorithm,
-we sort FI and normalize them, then we plot the figure:
+Using the model trained on all matches available, and the above algorithm,
+we sort FI and normalize them then plot the figure:
 
 \begin{figure}[H]
     \centering
@@ -354,30 +354,32 @@ the recent score condition is the most important.
 
 \subsection{Advice against Opponent Based on Weight of Factors}~{}
 
-As said previously, model trained from match data of a single player,
+As said previously, in model trained from match data of a single player,
 the factor with bigger weight is extremely effective to this player.
 
 And to give specific advice against the opponent, we choose the model trained on technical data.
 
-We choose three players:rublev(three matches), sinner(four matches), alcaraz(five matches), and 
-we use the feature analysis method in problem 3 to find their features, the result is as follows:
+We choose three players: Andrey Rublev, Jannik Sinner, Carlos Alcaraz 
+with three, four and five matches of data respectively,
+and we use the feature analysis method in problem 3 to find their features, the result is as follows:
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.4]{mainmatter/imgs/9.png}
     \caption{features of three players}
 \end{figure}
 \begin{enumerate}
-    \item In comparison to general features, both Rublev and Alcaraz phave significant feature fast win. 
+    \item In comparison to general features, both Rublev and Alcaraz have significant feature fast win. 
     Therefore, when competing against other players, we recommend them to emphasize the rhythm of seizing 
     the early shots. For example, they can focus more on the quality of their serves, 
     progressively achieving a fast win to enhance their momentum. 
     \item Additionally, Rublev is hardly affected by negative factors such as double fault and 
     unforced error. Hence, in matches, there is no need for him to worry about occasional mistakes; 
     instead, he can play boldly.
-    \item For Sinner, his technical characteristics are markedly different. 
-    Important features for him are winners and return depth. Consequently, 
-    we advise Sinner to fully exploit his strong scoring abilities of winner points
+    \item For Sinner, his technical characteristics are remarkably different, 
+    important features for him are winners and return depth. Consequently.
+    We advise Sinner to fully exploit his strong scoring abilities of winner points
     and utilize his control over return depth to steer the course of the match and establish an advantage.
+    What's more, he should looking for breakthroughs in his opponent's service game.
 
 \end{enumerate}
 
