@@ -87,7 +87,7 @@ end
 % writematrix(momentum_5condition,'momentum_condition.csv');
 % writematrix(match_index,'match_index.csv')
 %% plot predicted momentum condition
-model_sum = readmatrix('pred_res/model_sum.csv');
+model_sum = readmatrix('pred_res/model_sum_fit.csv');
 pred_mom_con = model_sum(2:end,3:7);
 matches = [
     10, 237, 238, 294;
@@ -135,31 +135,39 @@ end
 %1,2,3,4分别对应四种曲线
 %都用days个point
 %momentum_5condition_predict(a:b,1),match duration is [a,b]
-i=1;
-a=11;b=a+csv_cap(i)-1;
-days = 1;
-p=1;
-
-x = a+0.5:0.5:b+1;
-x(2:2:length(x)) = x(2:2:length(x)) - 0.01;
-x(1:2:length(x)-1) = x(1:2:length(x)-1) - 0.49;
-
-y = [];
-for j = a:b
-    temp = (3-2*p)*momentum_5condition(match_index(i)-1+j,days);%change here to plot prediction
-    if temp == 0
-        y = [y,[1,1]];
-    elseif temp == 1
-        y = [y,[-1,1]];
-    elseif temp == 2
-        y = [y,[-1,-1]];
-    elseif temp == 3
-        y = [y,[1,-1]];
+for i = 1:3
+    a=11;b=a+csv_cap(i)-1;
+    days = 1;
+    p=1;
+    
+    x = a+0.5:0.5:b+1;
+    x(2:2:length(x)) = x(2:2:length(x)) - 0.01;
+    x(1:2:length(x)-1) = x(1:2:length(x)-1) - 0.49;
+    
+    y = [];
+    for j = a:b
+        temp = (3-2*p)*momentum_5condition(match_index(i)-1+j,days);%change here to plot prediction
+        if temp == 0
+            y = [y,[1,1]];
+        elseif temp == 1
+            y = [y,[-1,1]];
+        elseif temp == 2
+            y = [y,[-1,-1]];
+        elseif temp == 3
+            y = [y,[1,-1]];
+        end
     end
+    figure;
+    plot(x,y)
+    % hold on
+    % plot(x,y_pre)
+    title('momentum swings in match')
+    xlabel('time')
+    ylabel('momentum advantage')
+    ylim([-3,3]);
 end
 
-
-
+%%
 y_pre = [];
 for j = a:b
     temp = pred_mom_con(csv_match_index(i)+j-11+(p-1)*csv_cap(i,1),days);%change here to plot prediction
