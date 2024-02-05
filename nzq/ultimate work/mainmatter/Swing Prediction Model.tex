@@ -47,7 +47,7 @@ To visualize the swing, we choose four shapes of lines to represent the four sta
     \label{fig:states}
 \end{figure}
 
-Here we display the momentum swings of first three matches.
+Here we display the momentum swings drived from AHP of first three matches.
 
 \begin{figure}[H]
     \centering
@@ -129,31 +129,35 @@ We will focus on a single unit of recurrent neural network to interpret the hidd
 
 So, we can predict the momentum swings from the technical data of the past 10 points.
 
-\subsection{Visualization and Analysis}
+\subsection{Visualization and Analysis}~{}
 
-We first use the model trained on all data available to 
-predict the swings of the play in the first three matches.
+Out of simplicity, the model shown in this section is trained merely on technical data.
 
-To avoid dazzling figure, we minus the model1 swing with prediction, shoiwng the diffrence.
-Here's the diffrence of first three matches.
+First, we display the model trained on all matches available to 
+predict the swings of the play on test data.
+To avoid dazzling figure, we minus the swing from AHP with prediction, showing the difference.
+
+Here's the difference of first three matches on training data.
 
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.34\textwidth}
         \includegraphics[width=\linewidth]{mainmatter/imgs/swing_diff_match1_overfit.png}
-        \caption{diffrence in match 1}
+        \caption{difference in match 1}
     \end{subfigure}\hspace{-0.02\textwidth}
     \begin{subfigure}[b]{0.34\textwidth}
         \includegraphics[width=\linewidth]{mainmatter/imgs/swing_diff_match2_overfit.png}
-        \caption{diffrence in match 2}
+        \caption{difference in match 2}
     \end{subfigure}\hspace{-0.02\textwidth}
     \begin{subfigure}[b]{0.34\textwidth}
         \includegraphics[width=\linewidth]{mainmatter/imgs/swing_diff_match3_overfit.png}
-        \caption{diffrence in match 3}
+        \caption{difference in match 3}
     \end{subfigure}
-    \caption{diffrence between prediction and AHP model}
+    \caption{difference between prediction and AHP model}
     \label{fig:diff swing}
 \end{figure}
+
+Here's the difference of first three matches on test data.
 
 calculate the match percentage of each match between the prediction model and the result from AHP.
 
@@ -203,10 +207,32 @@ for the prediction.
 If using match data of multiple different players, the factor with bigger weight is effective to 
 all players.
 
-\subsection{Advice against Opponent Based on Weight of Factors}
+\subsection{Advice against Opponent Based on Weight of Factors}~{}
 
 If using match data of a single player, the factor with bigger weight is extremely effective to 
 this player.
+
+Now we choose three players:rublev(three matches), sinner(four matches), alcaraz(five matches), and 
+we use the feature analysis method in problem 3 to find their features, the result is as follows:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{mainmatter/imgs/9.png}
+    \caption{features of three players}
+\end{figure}
+\begin{enumerate}
+    \item In comparison to general features, both Rublev and Alcaraz phave significant feature fast win. 
+    Therefore, when competing against other players, we recommend them to emphasize the rhythm of seizing 
+    the early shots. For example, they can focus more on the quality of their serves, 
+    progressively achieving a fast win to enhance their momentum. 
+    \item Additionally, Rublev is hardly affected by negative factors such as double fault and 
+    unforced error. Hence, in matches, there is no need for him to worry about occasional mistakes; 
+    instead, he can play boldly.
+    \item For Sinner, his technical characteristics are markedly different. 
+    Important features for him are winners and return depth. Consequently, 
+    we advise Sinner to fully exploit his strong scoring abilities of winner points
+    and utilize his control over return depth to steer the course of the match and establish an advantage.
+
+\end{enumerate}
 
 Now we have finished Problem 3.
 
