@@ -133,13 +133,15 @@ So, we can predict the momentum swings from the technical data of the past 10 po
 
 \subsection{Visualization and Analysis}~{}
 
-Out of simplicity, the model shown in this section is trained merely on technical data.
+Out of simplicity, the model shown in this section is trained merely on technical data,
+and only the next swing of the next 5 swings is shown.
 
 First, we display the model trained on all matches available to 
 predict the swings of the play on test data.
 To avoid dazzling figure, we minus the swing from AHP with prediction, showing the difference.
 
-Here's the difference of first three matches on training data.
+Here's the difference of first three matches. It's worth mentioning that the training data
+is fisrt 0.8 of the match.
 
 \begin{figure}[H]
     \centering
@@ -159,15 +161,70 @@ Here's the difference of first three matches on training data.
     \label{fig:diff swing}
 \end{figure}
 
-Here's the difference of first three matches on test data.
+Together with other predictions can be concluded as the table below, 
+if we calculate the prediction rate by the number of correct predictions (the flat part of the figure)
+divided by the total number of points:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cccccc}
+        \toprule
+        \textbf{Step} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
+        \midrule
+        \textbf{Train Set} & 0.7946 & 0.8297 & 0.8396 & 0.8404 & 0.8044 \\
+        \textbf{Test Set} & 0.3771 & 0.3423 & 0.3203 & 0.3078 & 0.2964 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Accuracy Scores for Each Step}
+    \label{tab:predict_rate_untrained}
+\end{table}
+
+To make sure training the model is useful, we give the prediction rate of untrained model.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cccccc}
+        \toprule
+        \textbf{Step} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
+        \midrule
+        \textbf{Train Set} & 0.1827 & 0.1821 & 0.1949 & 0.3174 & 0.1816 \\
+        \textbf{Test Set} & 0.1768 & 0.1768 & 0.1915 & 0.3199 & 0.1724 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Accuracy Scores of Untrained Model}
+    \label{tab:predict_rate_untrained}
+\end{table}
 
 
+We can see that the prediction rate of the untrained model is around 0.25,
+namely the probability of random guess. 
+The prediction rate of the trained model is much higher.
 
-Together with other predictions the figures can be concluded as the table below:
+Considering the situation of over-fitting, we decrease the epochs and result is as follows:
 
-\subsubsection{Prediction Error compared with AHP model outcome}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cccccc}
+        \toprule
+        \textbf{Step} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
+        \midrule
+        \textbf{Train Set} & 0.5379 & 0.4930 & 0.4693 & 0.4579 & 0.4471 \\
+        \textbf{Test Set} & 0.5073 & 0.4274 & 0.4057 & 0.4094 & 0.4035 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Accuracy Scores of Fit Model}
+    \label{tab:predict_rate_fit}
+\end{table}
 
-Overlap rate of the prediction model and the result from AHP is?
+Now we can see that the prediction rate of the trained model is bigger than random guess,
+we can conclude that momentum swings can be predicted by the data 
+(technical data if only consider the statistics shown) of the past 10 points.
+
+
+\subsubsection{Prediction Error compared with AHP model outcome}~{}
+
+Although the prediction rate is bigger than random guess, 0.5 is not a big number.
+Now we analyze the reason.
 
 \paragraph{Factors we may fail to consider}~{}
 
@@ -235,7 +292,7 @@ Using the model with recent score data, we plot the figure:
 
 We can find out that the most important feature is the score difference,
 way more important than technical features. 
-This is because we find out that the recent score condition is the most direct factor to the momentum.
+This is because the recent score condition is the most direct factor to the momentum.
 Now we have expanded our knowledge to problem 2, that among multiple factors
 that affect future momentum, 
 the recent score condition is the most important.

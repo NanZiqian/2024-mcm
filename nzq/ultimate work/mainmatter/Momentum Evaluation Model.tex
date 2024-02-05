@@ -210,11 +210,11 @@ To check if sequence of momentum is self-related, we calculate the Pearson corre
 between momentum and that with a time lag.
 
 \begin{algorithm}
-    \caption{Calculate autocorrelation function}\label{alg:auto_corr}
+    \caption{Calculate Autocorrelation Function}\label{alg:auto_corr}
     \begin{algorithmic}
         \For{$i = 1$ to $31$}
-            \State $time\_series \gets momentum(i^{th}\ match\_index: {i+1}^{th}\ match\_index - 1)$
-            \State $max\_lag \gets \lfloor length(time\_series) / 2 \rfloor$ \Comment{Consider lags up to half of the length of the time series}
+            \State $time\_series \gets \text{momentum}(i^{th}\ \text{match\_index} : {i+1}^{th}\ \text{match\_index} - 1)$
+            \State $max\_lag \gets \lfloor \text{length}(time\_series) / 2 \rfloor$ \Comment{Consider lags up to half of the length of the time series}
             \State $autocorrelation \gets \text{zeros}(1, max\_lag)$
 
             \For{$shift = 1$ to $max\_lag$}
@@ -310,16 +310,18 @@ and momentum difference of all matches. Here we display the three of them.
 Here we display the max and min correlation in different rounds.
 (hint. the max and min correlation means maximum and minimum of all matches.)
 
-\begin{table}[!ht]
+\begin{table}[H]
     \centering
-    \begin{tabular}{|l|l|l|l|l|l|}
-    \hline
-        rounds & 1 & 2 & 3 & 4 & 5 \\ \hline
-        max & 0.7934 & 0.6307 & 0.5264 & 0.4678 & 0.3910 \\ \hline
-        min & 0.6914 & 0.4516 & 0.3074 & 0.1824 & 0.0627 \\ \hline
+    \begin{tabular}{ccccccc}
+        \toprule
+        \textbf{Rounds} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
+        \midrule
+        \textbf{Max} & 0.7934 & 0.6307 & 0.5264 & 0.4678 & 0.3910 \\
+        \textbf{Min} & 0.6914 & 0.4516 & 0.3074 & 0.1824 & 0.0627 \\
+        \bottomrule
     \end{tabular}
-    \caption{max and min Correlation of all matches in different rounds}
-    \label{fig:maxmin Correlation}
+    \caption{Maximum and Minimum Correlation of all matches in different rounds}
+    \label{fig:maxmin_correlation}
 \end{table}
 
 As we can see from the table, the correlation between momentum and future scores is bigger
