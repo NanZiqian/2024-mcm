@@ -70,12 +70,30 @@ Here we display the momentum swings drived from AHP of first three matches.
 
 \subsubsection{Data and Label used to train GRU}~{}
 
-To verify all potential factors, meanwhile avoiding over-fitting due to the large number of features,
-the data's feature we select is \dots
+To verify all potential factors, meanwhile avoid excessive calculation due to large number of features, we keep track of the following features in each point:
+
+\begin{itemize}
+    \item \verb|ace|: represents whether the player hit an ace in the point. This feature is a straightforward rendering of the player's serving ability.
+    \item \verb|double_fault|: represents whether the player committed a double fault in the point. By taking this factor into account, we can find out whether the player is stable at serving currently.
+    \item \verb|first_serve|: represents whether the player hit the goal in his first serve in the point. This is also a factor reflecting the serving stability of the player.
+    \item \verb|fast_win|: represents whether the player won the point after at most 3 rallies. This reflects the player's ability to gain advantage after his serve/return.
+    \item \verb|return_depth|: represents the return depth of the player in the point. This factor is key to breaking the opponent's serve. (Who can break a serve if he can't properly return the opponent's serve?)
+    \item \verb|winner|: represents whether the player scored by hitting a winner in the point. This shows the player's power at baseline, both forehand and backhand winners are counted.
+    \item \verb|net_pt_won|: whether the player scored by coming to the net, reflecting the capability of the player while at net.
+    \item \verb|distance|: the running distance of the player in the point. This is an important indicator of the player's energy and stamina.
+    \item \verb|unf_err|: whether the player committed an unforced error in the point. Also a indicator of the player's stamina.
+    \item \verb|rally|: the rally count in the point. Represents the player's baseline hitting stability as well as his fitness.
+    \item \verb|scored_last_point|: whether the player scored the last point or not.
+    \item \verb|score_diff|: score difference in the current game. Along with last factor, these factors depict the current situation of the match.
+    \item \verb|break_point_diff|: represents the current breakpoint conversion rate of the player. This feature can reflect the player's performance on clutch points.
+    \item \verb|speed|: represents the player's serve speed in the point. Yet another feature to show the player's serving ability.
+    \item \verb|game_victor|: whether the player won a game in this point.
+    \item \verb|set_victor|: whether the player won a set in this point. Along with \verb|game_victor|, these feature also represents the players performance on clutch points.
+\end{itemize}
 
 What's more, we want to find out can swings merely be predicted by the technical data,
 so that we can give advice to players on skills,
-therefore we delete \verb|scored_last_point, score_diff, game_victor, set_victor| before we train a second model.
+therefore we delete \verb|scored_last_point|, \verb|score_diff|, \verb|game_victor|, \verb|set_victor| before we train a second model.
 
 The label we use is the state of the swing derived from model of AHP.
 
