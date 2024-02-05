@@ -1,0 +1,13 @@
+-----------model_generalization------------
+100%|█████████████████████████████████████████████████████████████████████████████████| 111/111 [00:01<00:00, 82.53it/s]
+train set predict rate for step 1 is: 0.449549
+train set predict rate for step 2 is: 0.442644
+train set predict rate for step 3 is: 0.437430
+train set predict rate for step 4 is: 0.437007
+train set predict rate for step 5 is: 0.425028
+100%|█████████████████████████████████████████████████████████████████████████████████| 103/103 [00:01<00:00, 78.57it/s]
+test set predict rate for step 1 is: 0.411495
+test set predict rate for step 2 is: 0.401559
+test set predict rate for step 3 is: 0.398349
+test set predict rate for step 4 is: 0.399419
+test set predict rate for step 5 is: 0.393152
