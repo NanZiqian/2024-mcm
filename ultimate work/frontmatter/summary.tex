@@ -23,7 +23,7 @@ with modern data science methods, trying to figure out the certain factors that 
 As for problem 1, we selected factors that reflect player's performance and used Analytic Hierarchy Process (AHP) method 
 to calculate the weights. We found that the three most influential factor are
 score difference, whether scored in the last point and running distance. The sum of the weights multiplied by factors
-reflecting the performance is referred as momentum. 
+reflecting the performance is referred to as momentum. 
 
 In problem 2, we performed autocorrelation test on momentum, 
 and we found that it has strong first-order autocorrelation (0.5149). Then we quantified
@@ -38,7 +38,7 @@ four categories. Then we processed data that's suitable for training, and traine
 We trained model with data with and without recent scores, to figure out recent scores' impact on future swings.
 We trained model with data of a single player, to give customized advice.
 And we trained model with data of all matches, to figure out general factors that affect future swings of all players.
-We found that the accuracy on test data of all models is around 0.4274, better than random guess of the four patterns,
+We found that the accuracy on the test data of all models is around 0.4274, better than random guess of the four patterns,
 which implies that there're determining factors of swings in our model.
 
 To identify the most relevant factors, we used a novel algorithm called Permutation Feature Importance algorithm.
