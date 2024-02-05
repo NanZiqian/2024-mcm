@@ -158,6 +158,8 @@ for j = a:b
     end
 end
 
+
+
 y_pre = [];
 for j = a:b
     temp = pred_mom_con(csv_match_index(i)+j-11+(p-1)*csv_cap(i,1),days);%change here to plot prediction
@@ -172,9 +174,9 @@ for j = a:b
     end
 end
 plot(x,y)
-hold on
-plot(x,y_pre)
-title('momentum swings in match')
+% hold on
+% plot(x,y_pre)
+title('momentum swings in match 1')
 xlabel('time')
 ylabel('momentum advantage')
 ylim([-5,5]);

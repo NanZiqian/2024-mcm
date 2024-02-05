@@ -5,6 +5,7 @@
 \usepackage{geometry}
 \geometry{left=1in,right=0.75in,top=1in,bottom=1in}
 \usepackage{float}
+\usepackage{url}
 \usepackage{makeidx}
 \makeindex
 \usepackage{subcaption}
@@ -49,11 +50,9 @@
 \newpage
 \input{mainmatter/Introduction}
 
-%\input{mainmatter/Notations and Asssumptions}
-
 \input{mainmatter/Momentum Evaluation Model}
 
-\input{mainmatter/Momentum Prediction Model}
+\input{mainmatter/Swing Prediction Model}
 
 \input{mainmatter/Robustness Analysis}
 
@@ -61,10 +60,10 @@
 
 %back matter%%%%%%%%%%%%%%%%%%%%%%%%%
 \addcontentsline{toc}{section}{Refences}
-\bibliography*{backmatter/papers}
+\bibliography{backmatter/papers}
 
 \appendix
-\input{backmatter/appendixA}
+\input{backmatter/appendixA Advice}
 
 \include{backmatter/useofAI}
 
