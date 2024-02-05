@@ -25,16 +25,16 @@ Based on our previous definition of ``momentum,'' the significant changes of the
 largely depend on the ``momentum'' of the two players. Therefore, we choose ``momentum'' to represent 
 the swings of the play. The specific definition is as follows:\\
 
-We use $\Delta f(t)$ to represent the difference in ``momentum'' between the two players., 
-so it can be easily seen that if $\Delta f(t)$ and $\Delta f(t+1)$
+We use $\Delta M(t)$ to represent the difference in ``momentum'' between the two players., 
+so it can be easily seen that if $\Delta M(t)$ and $\Delta M(t+1)$
 have different signs, it indicates a ``swing'' in the game's momentum. 
 In this way, we can define four states of ``momentum'' at time $t$:
 
 $$states=\begin{cases}
-    state1, &\text{if } \Delta f(t)>0 \text{ and } \Delta f(t+1)>0, \text{ which means stay positive}\\
-    state2, &\text{if } \Delta f(t)<0 \text{ and } \Delta f(t+1)>0, \text{ which means rise from negative to positive}\\
-    state3, &\text{if } \Delta f(t)<0 \text{ and } \Delta f(t+1)<0, \text{ which means stay negative}\\
-    state4, &\text{if } \Delta f(t)>0 \text{ and } \Delta f(t+1)<0, \text{ which means decrease from positive to negative}
+    state1, &\text{if } \Delta M(t)>0 \text{ and } \Delta M(t+1)>0, \text{ which means stay positive}\\
+    state2, &\text{if } \Delta M(t)<0 \text{ and } \Delta M(t+1)>0, \text{ which means rise from negative to positive}\\
+    state3, &\text{if } \Delta M(t)<0 \text{ and } \Delta M(t+1)<0, \text{ which means stay negative}\\
+    state4, &\text{if } \Delta M(t)>0 \text{ and } \Delta M(t+1)<0, \text{ which means decrease from positive to negative}
 \end{cases}$$
 Obviously, if state 2 or state 4 appears, we can determine that a swing has occurred. 
 
@@ -112,7 +112,7 @@ From the third model, we can examine
 the generalization ability to accurately predict the swings in irrelevant players and matches.
 
 \subsubsection{Utilizing the Gated Recurrent Unit (GRU) Network}~{}
-Gated Recurrent Units (GRUs) are a type of recurrent neural network (RNN) 
+Gated Recurrent Units (GRUs)\cite{GRU} are a type of recurrent neural network (RNN) 
 architecture that has gained popularity for sequential data processing. 
 And it is appropriate for our many(10)-to-many(5) prediction model.
 
@@ -293,12 +293,12 @@ So when we try to predict the far future momentum, there's no reason to be accur
 \subsection{Weight of Factors}~{}
 
 If we can derive the derivative of output with respect to input, we can get the weight of factors.
-Although it's difficult to directly acquire derivative, we can use Permutation Feature Importance theory
+Although it's difficult to directly acquire derivative, we can use Permutation Feature Importance theory\cite{Permutation}
 to avoid getting the derivative.
 
 \subsubsection{Permutation Feature Importance theory}~{}
 
-Permutation Feature Importance theory is used to measure the importance of a feature by calculating 
+Permutation Feature Importance theory\cite{Weight} is used to measure the importance of a feature by calculating 
 the increase in the model's prediction error after permuting the feature. A feature is “important” if shuffling its values increases the model error, 
 because in this case the model relied on the feature for the prediction. A feature is “unimportant” if 
 shuffling its values leaves the model error unchanged, because in this case the model ignored the feature 

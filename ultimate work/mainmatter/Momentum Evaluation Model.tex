@@ -2,16 +2,17 @@
 
 \subsection{Model Introduction}~{}
 
-To determine which player is performing better at a specific time, we create a indicator ``Momentum'' 
-using the Analytic Hierarchy Process (AHP) to give a quantitative and overall evaluation.
+To determine which player is performing better at a specific time, we create an indicator ``Momentum'' 
+using the Analytic Hierarchy Process (AHP) \cite{AHP}to give a quantitative and overall evaluation.
 
-\indent To investigate the reasons behind ``momentum'', we first need to provide a preliminary definition for ``momentum''. The magnitude of ``momentum'' is defined as $$f_{ijk}=\boldsymbol{\omega}\cdot\boldsymbol{x_{ijk}}$$
+\indent To investigate the reasons behind ``momentum'', we first need to provide a preliminary definition for ``momentum''. The magnitude of ``momentum'' is defined as 
+$$M=\boldsymbol{\omega}\cdot\boldsymbol{x}$$
 where:
 \begin{enumerate}
-    \item $f_{ijk}$ represents the ``momentum'' of player $k$ before the $j$th point number in the $i$th match (in the order given by the table).
-    \item $\boldsymbol{x_{ijk}}$ is an $n$-dimensional column vector representing some influencing factors at the corresponding moment. Specific details will be provided later.
+    \item $M$ represents the ``momentum''.
+    \item $\boldsymbol{x}$ is an $n$-dimensional column vector representing some influencing factors. Specific details will be provided later.
     \item $\boldsymbol{\omega}$ is an $n$-dimensional row vector indicating the specific weights of the influencing factors, which will be obtained through the Analytic Hierarchy Process (AHP).
-    \item In this formula, there are two different calculation methods, one representing rounds where the player serves and the other representing rounds where the opponent serves. We can express it as $$\boldsymbol{\omega}=\boldsymbol{\omega_0} \circ \boldsymbol{\delta}=(\omega_0^{(0)}\delta^{(0)},\omega_0^{(1)}\delta^{(1)},\dots,\omega_0^{(n)}\delta^{(n)})$$ representing a vector formed by element-wise multiplication of two vectors of the same dimension. Here, $\boldsymbol{\delta}$ is a $0,1$ vector indicating whether it is the player's serving round. In the specific calculation, we will consider two cases separately.
+    \item In this formula, there are two different calculation situations, one representing rounds where the player serves and the other representing rounds where the opponent serves. We can express it as $$\boldsymbol{\omega}=\boldsymbol{\omega_0} \circ \boldsymbol{\delta}=(\omega_0^{(0)}\delta^{(0)},\omega_0^{(1)}\delta^{(1)},\dots,\omega_0^{(n)}\delta^{(n)})$$  Here, $\boldsymbol{\delta}$ is a $0,1$ vector indicating whether it is the player's serving round. In the specific calculation, we will consider two cases separately.
 \end{enumerate}
 
 Out of our own interpretation of AHP, we will break down the problems into three parts:
@@ -60,7 +61,7 @@ variable that shows whether $player$ hits an ace ball in the point.
 
 \subsubsection{Factor Normalization and Data Cleaning}~{}
 
-For the specific definition of $\boldsymbol{x_{ij}^{n}}$, we believe that, 
+For the specific definition of $\boldsymbol{x}$, we believe that, 
 in addition to whether the player is serving, many other factors can have an impact,
 including the player's skills, fatigue level, and real-time mental state of the games.
 Based on these three main aspects, 
@@ -111,18 +112,27 @@ we have organized 12 factors as preliminary influencing factors, as follows:
 \begin{equation}
     diff = \frac{\sum_{p \in point}[p_{set\_no} = point_{cur, set\_no}][p_{game\_no} = point_{cur, game\_no}](2[p_{point\_victor} = player]-1)}{\min\{3, \sum_{p \in point}[p_{set\_no} = point_{cur, set\_no}][p_{game\_no} = point_{cur, game\_no}]\}}
 \end{equation}
+
 \par In order to normalize the data processed, we convert the original data to limit them in $[-1, 1]$. 
 For those factors that negatively influence the momentum, such as $P_{df}$, we made sure it's in $[-1, 0]$. For those factors that positively influence the momentum, such as $P_{win}$, we made sure it's in $[0, 1]$. For those factors that influence the momentum in both ways, such as $diff$, we made sure it's in $[-1, 1]$.
 
 \subsubsection{Collinearity Detection}~{}
 
-After processing the data, considering the potential collinearity among factors within the same category,
+After data processing, considering the potential collinearity among factors within the same category,
 such as serving aces, first-serve scoring rate, and whether the previous point was scored may 
 be correlated, as well as running distance and the number of strokes possibly being related, 
-we conducted collinearity detection using Stata. The results of the detection indicate a
+we conduct collinearity detection using Stata. The results of the detection indicate a
 significant variance inflation factor between running distance and the number of strokes. 
 Therefore, we decided to exclude one of them, choosing to retain the remaining 11 variables 
-for the Analytic Hierarchy Process (AHP).
+for the Analytic Hierarchy Process (AHP), as follows:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{mainmatter/imgs/11.png}
+    \caption{Non-collinear factors}
+    \label{fig:11var}
+\end{figure}
+
 
 \subsubsection{Analytic Hierarchy Process}~{}
 
@@ -133,8 +143,8 @@ factors in the next level. Starting from the second level of the hierarchy, we c
 comparison matrices for each factor influencing the factor in the level above, until reaching 
 the bottom level. Each element in the matrix indicates the preference level between factor i and 
 factor j at the same level. It is essential to note that we have separately established a series 
-of such comparison matrices for two different serving types (serving by oneself and serving by 
-the opponent). Here, we illustrate the matrix using serving by oneself as an example:
+of such comparison matrices for two different serving types (serve by oneself and serve by 
+the opponent). Here, we illustrate the matrix using serve by oneself as an example:
 
 \begin{figure}[H]
     \centering
@@ -143,7 +153,7 @@ the opponent). Here, we illustrate the matrix using serving by oneself as an exa
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.06]{mainmatter/imgs/3.jpg}
+    \includegraphics[scale=0.05]{mainmatter/imgs/3.jpg}
     \caption{Comparison matrix for degree of fatigue and mantality}
 \end{figure}
 \begin{figure}[H]
@@ -172,8 +182,8 @@ Analyzing the various factors in the chart, it is evident that the most impactfu
 whether the previous point was scored. Following closely is the distance covered during the 
 play, which aligns well with common intuition.\\
 
-Thus, our final momentum is defined as:(need to change symbol)
-$$momentum=\begin{cases}
+Thus, our final momentum is defined as:
+$$M=\begin{cases}
     \sum\limits_{n=1,n\neq 5}^{11}\omega_n x_n, & \text{if the player serves}  \\
     \sum\limits_{n=5}^{11}\omega_n x_n, & \text{if the opponent serves}
 \end{cases}$$
@@ -190,7 +200,7 @@ Now, we illustrate the graph of the "momentum" in the first match:
 \end{figure}
 
 It can be observed that the variation in ``momentum'' is a process of give and take.
-In photo 2, when momentum 1 is above momentum 2, it means that the player 1 is performing better than the opponent. 
+When momentum 1 is higher than momentum 2, it means that the player 1 is performing better than the opponent. 
 
 \subsection{momentum autocorrelation and correlation with runs of success}~{}
 
