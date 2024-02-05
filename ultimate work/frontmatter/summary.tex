@@ -11,21 +11,25 @@
 	\Large \textbf{Shortest Path Algorithms:~Taxonomy and Advance in Research}
 \end{center}
 
-\cite{Alice13}
+Every athlete understand the importance of practicing skills and strategies to win a match.
+But in most sports, they are not the only determining factors of the outcome of a match.
+A young and fearless athlete may surprisingly defeat a veteran, or
+even the most acknowledged and well-known athlete may lose a match due to a momentary lapse in concentration
+and the tide it raises. Sometimes the outcome seems destined to be altered by a force, even multiple times.
+We call it momentum.\cite{Alice13} Such is the charm of sports, and such is the charm of tennis.
+Out of curiosity, we are interested in studying the momentum, a mysterious force in tennis
+with modern methods.
 
-As for problem 1,  in order to accurately capture the effective information in the data 
-set, we take a series of data processing methods... After that, we select potential influencing
-factors and establish Analytic Hierarchy Process (AHP) model to make a preliminary analysis of the influencing
-factors and calculate specific parameters for each factor. We find that the biggest factor is 
-score difference. Apart from that ,whether scored in the last point, running distance, unforced error and fast win
-will also positively or negatively influence the momentum to a comparatively large extent. The above conclusion is verified
-in our later models.\\
+As for problem 1, we select potential influencing factors and use Analytic Hierarchy Process (AHP) method 
+to make a preliminary sort of importance of the influencing factors. We find that the three most influential factor is 
+score difference, whether scored in the last point and running distance.
 
-In problem 2, we believe that momentum will affect the future scores of the match. So to answer the coach's question, 
-we first perform autocorrelation test on momentum, and we find that it has strong first-oredr autocorrelation. Then we quantify 
-the future scores and then determine the correlation of momentum the scores in the future, they are highly correlated.\\
+In problem 2, we perform autocorrelation test on momentum, 
+and we find that it has strong first-order autocorrelation with a corrcoef of approximately 0.5149. Then we quantify 
+the future scores and then determine the correlation between momentum and future scores, they are highly correlated,
+and with a maximum correlation coefficient of 0.7934 with next score.
 
-Problem 3 is devided into 3 parts. To predict the swings in the match , we establish model based on Gated Recurrent Unit(GRU) algorithm.
+In problem 3, to predict the swings in the match , we establish model based on Gated Recurrent Unit(GRU) network.
 We process data in problem 1 and add more features. We define the swings and use previous information to predict future.
 Then compared to the result in problem 1, our accuracy is ....\\
 
