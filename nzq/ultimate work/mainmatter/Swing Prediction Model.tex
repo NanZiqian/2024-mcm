@@ -161,9 +161,14 @@ is fisrt 0.8 of the match.
     \label{fig:diff swing}
 \end{figure}
 
-Together with other predictions can be concluded as the table below, 
-if we calculate the prediction rate by the number of correct predictions (the flat part of the figure)
-divided by the total number of points:
+\subsubsection{Prediction Error compared with AHP model}~{}
+
+we calculate the prediction rate by the number of correct predictions (the flat part of the figure)
+divided by the total number of points. The fomula is as follows:
+$$ r_{accurate}=\frac{\sum\limits_{matches} P_i}{\sum\limits_{matches} L_i}$$
+where $L_i$ stands for the length of the match.
+
+The predictions can be concluded as the table below:
 
 \begin{table}[H]
     \centering
@@ -220,17 +225,21 @@ Now we can see that the prediction rate of the trained model is bigger than rand
 we can conclude that momentum swings can be predicted by the data 
 (technical data if only consider the statistics shown) of the past 10 points.
 
-
-\subsubsection{Prediction Error compared with AHP model}~{}
-
 Although the prediction rate is bigger than random guess, 0.5 is not a big number.
 Now we analyze the reason.
 
 \paragraph{Factors we may fail to consider}~{}
 
 First of all, the AHP model is not considering all possible factors to momentum.
-For example, The potential shifts in player strategy, the deliberate concealment of abilities by players,
-and the motivation of the audience have not been taken into account. 
+
+\begin{enumerate}
+    \item The potential shifts in player strategy, during the course of the game, they may become more 
+    familiar with the opponent's technical characteristics and make targeted changes to shift ``momentum''.
+    \item The deliberate concealment of abilities by players, this is similar to the previous item.
+    \item The incentive of the audience, this is more likely to have something to do with the difference of home and away,
+    just like football. The influence of the audience on foreign and native players is totally different.
+\end{enumerate}
+
 These factors are easily influenced by past events but are challenging to quantify.
 If these elements play a crucial role in what is commonly referred to as the momentum effect,
 then our model may not accurately reflect our intuition.

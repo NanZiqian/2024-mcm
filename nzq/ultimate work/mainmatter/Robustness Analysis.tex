@@ -2,26 +2,43 @@
 
 \subsection{Generalization ability}
 
-In the previous section, we have only used the data of the first three matches. In this section we will focus on the generlization of the model.
+In this section we will focus on the generlization of the model,
+that is to test model on irrelevant player or match.
+The model is trained on first 16 matches and test on the rest matches.
 
-\paragraph{test on all given data}~{}
+\paragraph{Prediction of Other Matches}~{}
 
-We use our model in problem 3 in predicting all matches to verify its accuracy. Considering the difference length of the matches, we use weighted
-accuracy to denote the generability of our model. The fomula is as follows:
-$$ P_{avg}=\frac{1}{L_{tot}}\sum\limits_{matches}\frac{P_i}{L_i}$$
-where $L_i$ stands for the length of the match, we measure it by point number.
+A figure of swing difference on train match, and a figure of swing difference on test match are displayed.
 
-So the general accuracy of our model in predicting matches is //////, \\
-following are some factors that are not included in our model, 
-all of which we think may influence the result, some of them may be hard to quantify, some of them are not included due to lack
-of data. Adding them to the model can make it more complete, this is left for future work.
-\begin{enumerate}
-    \item The change of the players' strategies, during the course of the game, they may become more 
-    familiar with the opponent's technical characteristics and make targeted changes to shift "momentum".
-    \item The possibility that the players intentionally hide their strength, this is similar to the previous item.
-    \item The incentive of the audience, this is more likely to have something to do with the difference of home and away,
-    just like football. The influence of the audience on foreign and native players is totally different.
-\end{enumerate}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.5\textwidth}
+        \includegraphics[width=\linewidth]{mainmatter/imgs/generalization_train.png}
+        \caption{train match}
+    \end{subfigure}\hspace{-0.02\textwidth}
+    \begin{subfigure}[b]{0.5\textwidth}
+        \includegraphics[width=\linewidth]{mainmatter/imgs/generalization_test.png}
+        \caption{test match}
+    \end{subfigure}\hspace{-0.02\textwidth}
+    \caption{difference on train and test match}
+    \label{fig:generalization}
+\end{figure}
+
+Table of accuracy on train and test match is displayed.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cccccc}
+        \toprule
+        \textbf{Step} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
+        \midrule
+        \textbf{Train Set} & 0.4495 & 0.4426 & 0.4374 & 0.4370 & 0.4250 \\
+        \textbf{Test Set} & 0.4115 & 0.4016 & 0.3983 & 0.3994 & 0.3932 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Predict Rate for Each Step}
+    \label{tab:predict_rate}
+\end{table}
 
 \paragraph{Analysis on Women's Tennis and Table Tennis}~{}
 
