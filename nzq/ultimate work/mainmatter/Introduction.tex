@@ -3,11 +3,16 @@
 
 \section{Introduction}
 
-test
+\subsection{Overview}~{}
 
-\subsection{Overview}
-
-test
+Tennis more than any other sport, is a game of momentum. 
+The absence of a clock to do the dirty work of finishing off an opponent, 
+and a scoring system based on units used, makes the flow of the match much more important than any 
+lead that has been established.--Chuck Kriese\\
+In the realm of tennis, the concept of "momentum" stands as a pivotal factor, 
+exerting a direct influence on players' performance and match outcomes. But momentum
+is a subjective feeling, it is hard to measure and quantify. So make a precise definition 
+of momentum and find its relationship with other events become an interesting topic.
 
 \subsection{Restatement of the Problem}
 
@@ -74,4 +79,17 @@ To simplify the problem, we made the following assumptions:
     \item \textbf{Assumption 2:} The ``current performance'' we usually refer to on a certain aspect of a player can be reflected by the player's 3 latest shots of that aspect.\\
     E.g. The current performance can be reflected by a combination of, the proportion of aces in the 3 latest \textbf{serves} of the player, the proportion of winners in the 3 latest \textbf{shots} of the player, the return depth of the 3 latest \textbf{returns} of the player, etc. \\
     \textbf{Justification:} The current performance of a player consists of the average performance and the status of the player at the moment, which can be comprehensively reflected in the player's performance on recent shots. For convenience, we specified that the 3 latest shots can reflect the player's current performance.
+
+    \item \textbf{Assumption 3:} We only consider factors mentioned in data, 
+    other factors such as the court and the audience are neglected.
+     These factors are hard to quantify. Also, these objective factors can't be changed, 
+    they are not effective in giving advice to atheletes.
+
+    \item \textbf{Assumption 4:} The given data is correct after our process.
+    \textbf{Justification:} The data about tennis is very likely to be collected
+    by human, and the data is not always accurate. We have to assume the data is correct to make our model work.
+
+    \item \textbf{Assumption 5:} We simply believe that qualitative factors such as return depth do not have variability in one category, for instance, we 
+    in the process of data, return depth is calculated in 3 types, D, ND and NA, regardless of the real number.
+    \textbf{Justification:} Though this may be not reasonable when the quantitative values are close but qualitative values are different, but it indeed corresponds to the given data.
 \end{itemize}
