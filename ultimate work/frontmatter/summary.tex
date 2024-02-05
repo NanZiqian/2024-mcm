@@ -22,7 +22,7 @@ with modern data science methods, trying to figure out the certain factors that 
 
 As for problem 1, we selected factors that reflect player's performance and used Analytic Hierarchy Process (AHP) method 
 to calculate the weights. We found that the three most influential factor are
-score difference, whether scored in the last point and running distance. The sum of the weights multiplying factors
+score difference, whether scored in the last point and running distance. The sum of the weights multiplied by factors
 reflecting the performance is referred as momentum. 
 
 In problem 2, we performed autocorrelation test on momentum, 
@@ -41,7 +41,7 @@ And we trained model with data of all matches, to figure out general factors tha
 We found that the accuracy on test data of all models is around 0.4274, better than random guess of the four patterns,
 which implies that there're determining factors of swings in our model.
 
-To identify the most related factors, we used a novel algorithm called Permutation Feature Importance algorithm.
+To identify the most relevant factors, we used a novel algorithm called Permutation Feature Importance algorithm.
 It can determine the importance of features of input in neural network. We found that the most important feature while
 the data includes recent score is still the ``score difference'', and without, is ``whether win within 3 rally count'',
 from which we inferred that recent scores has significant impact on momentum,
@@ -54,6 +54,6 @@ In problem 4, we chose model trained on half of the data and tested on the other
 As for women's tennis and table tennis, sadly we failed to find abundant data to train the model.
 But the path forward after finding the data is clear: we reassess AHP and train the GRU network.
 
-The letter including advice for coaches and athletes is attached in the appendix.
+The letter, including advice for coaches and athletes, is attached in the appendix.
 
 Key words: Momentum in Tennis, AHP, Correlation Analysis, GRU, Permutation Feature Importance
