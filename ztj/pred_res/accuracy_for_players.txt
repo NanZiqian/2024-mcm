@@ -1,0 +1,39 @@
+-----------alcaraz------------
+100%|███████████████████████████████████████████████████████████████████████████████████| 15/15 [00:00<00:00, 89.74it/s]
+train set predict rate for step 1 is: 0.439779
+train set predict rate for step 2 is: 0.398895
+train set predict rate for step 3 is: 0.401105
+train set predict rate for step 4 is: 0.425414
+train set predict rate for step 5 is: 0.416575
+100%|█████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:00<00:00, 80.93it/s]
+test set predict rate for step 1 is: 0.405286
+test set predict rate for step 2 is: 0.383260
+test set predict rate for step 3 is: 0.356828
+test set predict rate for step 4 is: 0.352423
+test set predict rate for step 5 is: 0.352423
+-----------sinner-------------
+100%|███████████████████████████████████████████████████████████████████████████████████| 10/10 [00:00<00:00, 93.92it/s]
+train set predict rate for step 1 is: 0.522951
+train set predict rate for step 2 is: 0.537705
+train set predict rate for step 3 is: 0.521311
+train set predict rate for step 4 is: 0.498361
+train set predict rate for step 5 is: 0.483607
+100%|█████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00, 45.77it/s]
+test set predict rate for step 1 is: 0.424837
+test set predict rate for step 2 is: 0.405229
+test set predict rate for step 3 is: 0.379085
+test set predict rate for step 4 is: 0.372549
+test set predict rate for step 5 is: 0.339869
+-----------rublev-------------
+100%|███████████████████████████████████████████████████████████████████████████████████| 10/10 [00:00<00:00, 81.39it/s]
+train set predict rate for step 1 is: 0.422047
+train set predict rate for step 2 is: 0.390551
+train set predict rate for step 3 is: 0.384252
+train set predict rate for step 4 is: 0.387402
+train set predict rate for step 5 is: 0.376378
+100%|████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00, 106.48it/s]
+test set predict rate for step 1 is: 0.436709
+test set predict rate for step 2 is: 0.392405
+test set predict rate for step 3 is: 0.386076
+test set predict rate for step 4 is: 0.449367
+test set predict rate for step 5 is: 0.398734
