@@ -2,16 +2,17 @@
 
 \subsection{Model Introduction}~{}
 
-To determine which player is performing better at a specific time, we create a indicator ``Momentum'' 
+To determine which player is performing better at a specific time, we create an indicator ``Momentum'' 
 using the Analytic Hierarchy Process (AHP) to give a quantitative and overall evaluation.
 
-\indent To investigate the reasons behind ``momentum'', we first need to provide a preliminary definition for ``momentum''. The magnitude of ``momentum'' is defined as $$f_{ijk}=\boldsymbol{\omega}\cdot\boldsymbol{x_{ijk}}$$
+\indent To investigate the reasons behind ``momentum'', we first need to provide a preliminary definition for ``momentum''. The magnitude of ``momentum'' is defined as 
+$$M=\boldsymbol{\omega}\cdot\boldsymbol{x}$$
 where:
 \begin{enumerate}
-    \item $f_{ijk}$ represents the ``momentum'' of player $k$ before the $j$th point number in the $i$th match (in the order given by the table).
-    \item $\boldsymbol{x_{ijk}}$ is an $n$-dimensional column vector representing some influencing factors at the corresponding moment. Specific details will be provided later.
+    \item $M$ represents the ``momentum''.
+    \item $\boldsymbol{x}$ is an $n$-dimensional column vector representing some influencing factors. Specific details will be provided later.
     \item $\boldsymbol{\omega}$ is an $n$-dimensional row vector indicating the specific weights of the influencing factors, which will be obtained through the Analytic Hierarchy Process (AHP).
-    \item In this formula, there are two different calculation methods, one representing rounds where the player serves and the other representing rounds where the opponent serves. We can express it as $$\boldsymbol{\omega}=\boldsymbol{\omega_0} \circ \boldsymbol{\delta}=(\omega_0^{(0)}\delta^{(0)},\omega_0^{(1)}\delta^{(1)},\dots,\omega_0^{(n)}\delta^{(n)})$$ representing a vector formed by element-wise multiplication of two vectors of the same dimension. Here, $\boldsymbol{\delta}$ is a $0,1$ vector indicating whether it is the player's serving round. In the specific calculation, we will consider two cases separately.
+    \item In this formula, there are two different calculation situations, one representing rounds where the player serves and the other representing rounds where the opponent serves. We can express it as $$\boldsymbol{\omega}=\boldsymbol{\omega_0} \circ \boldsymbol{\delta}=(\omega_0^{(0)}\delta^{(0)},\omega_0^{(1)}\delta^{(1)},\dots,\omega_0^{(n)}\delta^{(n)})$$ representing a vector formed by element-wise multiplication of two vectors of the same dimension. Here, $\boldsymbol{\delta}$ is a $0,1$ vector indicating whether it is the player's serving round. In the specific calculation, we will consider two cases separately.
 \end{enumerate}
 
 Out of our own interpretation of AHP, we will break down the problems into three parts:
