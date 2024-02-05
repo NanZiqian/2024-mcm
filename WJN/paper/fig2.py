@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-data = [0.016483278,0.005728187,0.036621921,0.382429422,0.13833293,0.073740326,0.026257812,0.049499482,0.014267717,0.024669062,0.115134702,0.116835161]
+data = [0.016483278,0.036621921,0.005728187,0.382429422,0.13833293,0.073740326,0.026257812,0.049499482,0.014267717,0.024669062,0.115134702,0.116835161]
 features = ['feature{}'.format(i) for i in range(1, len(data) + 1)]
 real_names = ['ace_', 'double_fault_', 'first_serve_', 'fast_win_', 'return_depth_', 'winner_', 'net_pt_won_', 'distance', 'unf_err_', 'rally_', 'break_point_diff', 'speed_mph']
 

@@ -344,9 +344,6 @@ We will focus on the following tasks:
     \item Visualize the process of "momentum" changes.
 \end{enumerate}
  
-
-
-
 \section{Model Review}
 
 In this section, we will primarily focus on establishing a model using the Analytic Hierarchy Process (AHP) to address problems 1 and 2. We will break down the problems into five parts:
@@ -600,6 +597,10 @@ of data. Adding them to the model can make it more complete, this is left for fu
     just like football. The influence of the audience on foreign and native players is totally different.
 \end{enumerate}
 
+As for women's tennis, it is a pity that we did not find enough data online, but from all men's match predictions, the 
+accuracy rate is stable, so we have every reason to believe that our data can also apply to women's matches. For table tennis,
+
+
 letter\\
 dear coach:\\
 
@@ -649,7 +650,20 @@ Indroduction\\
 Tennis more than any other sport, is a game of momentum. 
 The absence of a clock to do the dirty work of finishing off an opponent, 
 and a scoring system basedon units used, makes the flow of the match much more important than any 
-lead that has been established.--Chuck Kriese
+lead that has been established.--Chuck Kriese\\
+
+problem3
+
+Using the above argorithm, we sort FI and normalize them, then we plot the figure:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{imgs/8.png}
+    \caption{feature importance}
+\end{figure}
+
+We can see that the most important feature is fast win(rally count < 3 and wins the point),
+Because this time we only consider skill factors.this is related to our previous work,
 
 \end{document}
 
