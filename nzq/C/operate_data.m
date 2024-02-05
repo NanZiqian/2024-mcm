@@ -66,7 +66,7 @@ for i = 1:match_number
             stay_negative = matches_momentum_diffed(j+ii-1)<0 && matches_momentum_diffed(j+ii)<0;
             drop_to_negative = matches_momentum_diffed(j+ii-1)>0 && matches_momentum_diffed(j+ii)<0;
             momentum_5condition(j,ii) = stay_positive+2*up_to_positive+4*stay_negative+8*drop_to_negative;
-            momentum_5condition(j,ii) = log2(momentum_5condition(j,ii))+1;
+            momentum_5condition(j,ii) = log2(momentum_5condition(j,ii));%+1;
         end
     end
 end
